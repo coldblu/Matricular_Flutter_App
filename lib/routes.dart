@@ -1,16 +1,16 @@
 import 'package:routefly/routefly.dart';
 
-import 'app/cadastro/cadastro_page.dart' as a0;
+import 'app/home/home_page.dart' as a0;
 import 'app/login/login_page.dart' as a1;
 
 List<RouteEntity> get routes => [
   RouteEntity(
-    key: '/cadastro',
-    uri: Uri.parse('/cadastro'),
+    key: '/home',
+    uri: Uri.parse('/home'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      a0.CadastroPage(),
+      a0.HomePage(),
     ),
   ),
   RouteEntity(
@@ -19,13 +19,13 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      a1.LoginPage(),
+      const a1.LoginPage(),
     ),
   ),
 ];
 
 const routePaths = (
   path: '/',
-  cadastro: '/cadastro',
+  home: '/home',
   login: '/login',
 );

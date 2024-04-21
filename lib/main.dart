@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:matricular_app/routes.dart';
 import 'package:routefly/routefly.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'routes.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  
+  
   runApp(const MyApp());
 }
 
@@ -12,13 +17,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+     return MaterialApp.router(
       routerConfig: Routefly.routerConfig(
-        routes: routes,
+        routes: routes, // GENERATED
         initialPath: routePaths.login,
-        ),
-      title: 'Flutter Demo',
+        routeBuilder: (context, settings, child) {
+          return MaterialPageRoute(
+            settings: settings, // !! IMPORTANT !!
+            builder: (context) => child,
+          
+          );
+        },
+      ),
       debugShowCheckedModeBanner: false,
+
+      title: 'Aplicação Login',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
