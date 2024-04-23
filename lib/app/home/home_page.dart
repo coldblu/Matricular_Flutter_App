@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matricular_app/app/funcionarios/funcionario_page.dart';
 import 'package:matricular_app/app/home/pagina_teste.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   int _indiceAtual = 0; // Variável para controlar o índice das telas
   final List<Widget> _telas = [
     NewPageScreen("Início"),
-    NewPageScreen("Funcionários"),
+    FuncionarioPage(),
     NewPageScreen("Turmas")
   ];
 

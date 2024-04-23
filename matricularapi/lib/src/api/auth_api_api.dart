@@ -209,9 +209,9 @@ class AuthAPIApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<CredencialDTO>] as data
+  /// Returns a [Future] containing a [Response] with a [CredencialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<CredencialDTO>>> login({
+  Future<Response<CredencialDTO>> login({
     required AuthDTO authDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -266,7 +266,7 @@ class AuthAPIApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<CredencialDTO>? _responseData;
+    CredencialDTO? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -274,9 +274,8 @@ class AuthAPIApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType:
-                  const FullType(BuiltList, [FullType(CredencialDTO)]),
-            ) as BuiltList<CredencialDTO>;
+              specifiedType: const FullType(CredencialDTO),
+            ) as CredencialDTO;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -287,7 +286,7 @@ class AuthAPIApi {
       );
     }
 
-    return Response<BuiltList<CredencialDTO>>(
+    return Response<CredencialDTO>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

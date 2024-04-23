@@ -18,7 +18,8 @@ dependencies:
   routefly: ^1.0.9
   shared_preferences: ^2.2.2
   openapi_generator_annotations: ^5.0.2
-  
+  matricular:
+    path: matricularapi
   dio: ^5.4.2+1
 
 dev_dependencies:

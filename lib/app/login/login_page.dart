@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:matricular/matricular.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
 
   validateForm() async {
     var ok = false;
-    if (password().length > 6) {
+    if (password().length > 4) {
       passwordError.value = null;
       ok = true;
     } else {
@@ -49,29 +50,23 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if(ok) {
-      /*
       debugPrint("URL %ss"+url());
-      //final helloWorldApi = College(basePathOverride: url()).getControllerHelloWorldApi();
-      //final studentApi = College(basePathOverride: url()).getStudentControllerApi();
-      final String nome = login(); // String |
+      final authenticator = Matricular(basePathOverride: url()).getAuthAPIApi();
+      var authoDTObuilder = AuthDTOBuilder();
+      authoDTObuilder.login = login();;
+      authoDTObuilder.senha = password();
+
 
       try {
-        final response = await helloWorldApi.helloWorld( nome: nome);
-        print(response);
-        final responseList = await studentApi.listAll();
-        debugPrint("Dados Alunos");
-        debugPrint(responseList.data.toString());
-        responseList.data?.forEach((p0) {
-          debugPrint("Aluno: "+p0.name);
-        });
+        final response = await authenticator.login(authDTO: authoDTObuilder.build());
+        if(response.statusCode == 200){
+          debugPrint("ok validado");
+          Routefly.navigate(routePaths.home);
+        }
 
       } on DioException catch (e) {
-        print("Exception when calling ControllerHelloWorldApi->helloWorld: $e\n");
+        print("Exception when calling authenticator: $e\n");
       };
-
-      debugPrint("ok validado");
-      //Routefly.navigate(routePaths.student.home);
-*/
     }
   }
 
@@ -148,9 +143,9 @@ class _LoginPageState extends State<LoginPage> {
                   heightFactor: 0.4,
                   child: FilledButton(
                     //onPressed: isValid.watch(context) ? validateForm : null,
-                    onPressed: () {
+                    onPressed: isValid.watch(context) ? validateForm : null,/*() {
                       Routefly.pushNavigate(routePaths.home);
-                    },
+                    },*/
                     child: const Text('Login'),
                   ),
                 ),
@@ -162,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                 flex: 2,
                 child: TextButton(
                   onPressed: () {
-                    //Routefly.push();
+                    Routefly.push(routePaths.prefers);
                   },
                   child: const Text(
                     'Alterar URL Servidor:',
