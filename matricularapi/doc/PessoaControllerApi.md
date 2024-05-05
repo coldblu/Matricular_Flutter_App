@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **pessoaControllerAlterar**
-> pessoaControllerAlterar(id, pessoaDTO)
+> PessoaDTO pessoaControllerAlterar(id, pessoaDTO)
 
 
 
@@ -36,7 +36,8 @@ final String id = id_example; // String |
 final PessoaDTO pessoaDTO = ; // PessoaDTO | 
 
 try {
-    api.pessoaControllerAlterar(id, pessoaDTO);
+    final response = api.pessoaControllerAlterar(id, pessoaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PessoaDTO**](PessoaDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerIncluir**
-> pessoaControllerIncluir(pessoaDTO)
+> PessoaDTO pessoaControllerIncluir(pessoaDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getPessoaControllerApi();
 final PessoaDTO pessoaDTO = ; // PessoaDTO | 
 
 try {
-    api.pessoaControllerIncluir(pessoaDTO);
+    final response = api.pessoaControllerIncluir(pessoaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PessoaDTO**](PessoaDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerListAll**
-> pessoaControllerListAll()
+> BuiltList<PessoaDTO> pessoaControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getPessoaControllerApi();
 
 try {
-    api.pessoaControllerListAll();
+    final response = api.pessoaControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;PessoaDTO&gt;**](PessoaDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerListAllPage**
-> pessoaControllerListAllPage(page)
+> PagePessoaDTO pessoaControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getPessoaControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.pessoaControllerListAllPage(page);
+    final response = api.pessoaControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PagePessoaDTO**](PagePessoaDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerObterPorId**
-> pessoaControllerObterPorId(id)
+> PessoaDTO pessoaControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getPessoaControllerApi();
 final String id = id_example; // String | 
 
 try {
-    api.pessoaControllerObterPorId(id);
+    final response = api.pessoaControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PessoaDTO**](PessoaDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerRemover**
-> pessoaControllerRemover(id)
+> PessoaDTO pessoaControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getPessoaControllerApi();
 final String id = id_example; // String | 
 
 try {
-    api.pessoaControllerRemover(id);
+    final response = api.pessoaControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PessoaDTO**](PessoaDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerSearchFieldsAction**
-> pessoaControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<PessoaDTO> pessoaControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getPessoaControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.pessoaControllerSearchFieldsAction(searchFieldValue);
+    final response = api.pessoaControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;PessoaDTO&gt;**](PessoaDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pessoaControllerSearchFieldsActionPage**
-> pessoaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PagePessoaDTO pessoaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.pessoaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.pessoaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling PessoaControllerApi->pessoaControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PagePessoaDTO**](PagePessoaDTO.md)
 
 ### Authorization
 

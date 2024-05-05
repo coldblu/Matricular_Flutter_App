@@ -11,21 +11,29 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**matriculaControllerAlterar**](MatriculaControllerApi.md#matriculacontrolleralterar) | **PUT** /api/v1/matricula/{id} | 
 [**matriculaControllerAtualizaContraChequeMatricula**](MatriculaControllerApi.md#matriculacontrolleratualizacontrachequematricula) | **POST** /api/v1/matricula/documento/atualiza-contra-cheque | 
+[**matriculaControllerCount**](MatriculaControllerApi.md#matriculacontrollercount) | **GET** /api/v1/matricula/listar-matriculas-status-pagination | 
+[**matriculaControllerGerarTermo**](MatriculaControllerApi.md#matriculacontrollergerartermo) | **POST** /api/v1/matricula/termo/{id} | 
 [**matriculaControllerGetDocumentoMatricula**](MatriculaControllerApi.md#matriculacontrollergetdocumentomatricula) | **GET** /api/v1/matricula/documento/{caminhodoc} | 
+[**matriculaControllerGetMatriculaVisualizar**](MatriculaControllerApi.md#matriculacontrollergetmatriculavisualizar) | **GET** /api/v1/matricula/matricula-visualiza | 
+[**matriculaControllerGetTermo**](MatriculaControllerApi.md#matriculacontrollergettermo) | **GET** /api/v1/matricula/termo/{caminhodoc} | 
 [**matriculaControllerIncluir**](MatriculaControllerApi.md#matriculacontrollerincluir) | **POST** /api/v1/matricula | 
 [**matriculaControllerListAll**](MatriculaControllerApi.md#matriculacontrollerlistall) | **GET** /api/v1/matricula | 
 [**matriculaControllerListAllPage**](MatriculaControllerApi.md#matriculacontrollerlistallpage) | **GET** /api/v1/matricula/page | 
+[**matriculaControllerListAllPageMatriculaListagemDTO**](MatriculaControllerApi.md#matriculacontrollerlistallpagematriculalistagemdto) | **GET** /api/v1/matricula/listar-matriculas-status-pagination/{offset}/{pageSize} | 
+[**matriculaControllerListarAlunosPorTurma**](MatriculaControllerApi.md#matriculacontrollerlistaralunosporturma) | **GET** /api/v1/matricula/listar-por-turma | 
+[**matriculaControllerListarMatriculasListagemPorStatus**](MatriculaControllerApi.md#matriculacontrollerlistarmatriculaslistagemporstatus) | **GET** /api/v1/matricula/listar-matriculas-status | 
 [**matriculaControllerObterPorId**](MatriculaControllerApi.md#matriculacontrollerobterporid) | **GET** /api/v1/matricula/{id} | 
 [**matriculaControllerRemover**](MatriculaControllerApi.md#matriculacontrollerremover) | **DELETE** /api/v1/matricula/{id} | 
 [**matriculaControllerSearchFieldsAction**](MatriculaControllerApi.md#matriculacontrollersearchfieldsaction) | **POST** /api/v1/matricula/search-fields | 
 [**matriculaControllerSearchFieldsActionPage**](MatriculaControllerApi.md#matriculacontrollersearchfieldsactionpage) | **POST** /api/v1/matricula/search-fields/page | 
 [**matriculaControllerSearchFieldsList**](MatriculaControllerApi.md#matriculacontrollersearchfieldslist) | **GET** /api/v1/matricula/search-fields | 
-[**matriculaControllerUploadDocumento**](MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documentos | 
+[**matriculaControllerUploadDocumento**](MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documento | 
+[**matriculaControllerUploadDocumentos**](MatriculaControllerApi.md#matriculacontrolleruploaddocumentos) | **POST** /api/v1/matricula/documentos | 
 [**matriculaControllerValidaMatricula**](MatriculaControllerApi.md#matriculacontrollervalidamatricula) | **POST** /api/v1/matricula/valida | 
 
 
 # **matriculaControllerAlterar**
-> matriculaControllerAlterar(id, matriculaDTO)
+> MatriculaDTO matriculaControllerAlterar(id, matriculaDTO)
 
 
 
@@ -40,7 +48,8 @@ final int id = 789; // int |
 final MatriculaDTO matriculaDTO = ; // MatriculaDTO | 
 
 try {
-    api.matriculaControllerAlterar(id, matriculaDTO);
+    final response = api.matriculaControllerAlterar(id, matriculaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerAlterar: $e\n');
 }
@@ -55,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**MatriculaDTO**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -72,6 +81,8 @@ void (empty response body)
 > MatriculaDTO matriculaControllerAtualizaContraChequeMatricula(idMatricula, tipoDocumento, multipartFile)
 
 
+
+Busca a quantidade de registros
 
 ### Example
 ```dart
@@ -109,7 +120,94 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: */*
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerCount**
+> int matriculaControllerCount(statusMatricula)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final String statusMatricula = statusMatricula_example; // String | 
+
+try {
+    final response = api.matriculaControllerCount(statusMatricula);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerCount: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **statusMatricula** | **String**|  | 
+
+### Return type
+
+**int**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerGerarTermo**
+> matriculaControllerGerarTermo(id, cpfTutor)
+
+
+
+Gera o termo da matricula
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final int id = 789; // int | 
+final String cpfTutor = cpfTutor_example; // String | 
+
+try {
+    api.matriculaControllerGerarTermo(id, cpfTutor);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerGerarTermo: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  | 
+ **cpfTutor** | **String**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -154,8 +252,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **matriculaControllerGetMatriculaVisualizar**
+> MatriculaVisualizarDTO matriculaControllerGetMatriculaVisualizar(idMatricula)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final int idMatricula = 789; // int | 
+
+try {
+    final response = api.matriculaControllerGetMatriculaVisualizar(idMatricula);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerGetMatriculaVisualizar: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idMatricula** | **int**|  | 
+
+### Return type
+
+[**MatriculaVisualizarDTO**](MatriculaVisualizarDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerGetTermo**
+> Uint8List matriculaControllerGetTermo(caminhodoc)
+
+
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final String caminhodoc = caminhodoc_example; // String | 
+
+try {
+    final response = api.matriculaControllerGetTermo(caminhodoc);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerGetTermo: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **caminhodoc** | **String**|  | 
+
+### Return type
+
+[**Uint8List**](Uint8List.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **matriculaControllerIncluir**
-> matriculaControllerIncluir(matriculaDTO)
+> MatriculaDTO matriculaControllerIncluir(matriculaDTO)
 
 
 
@@ -169,7 +351,8 @@ final api = Matricular().getMatriculaControllerApi();
 final MatriculaDTO matriculaDTO = ; // MatriculaDTO | 
 
 try {
-    api.matriculaControllerIncluir(matriculaDTO);
+    final response = api.matriculaControllerIncluir(matriculaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerIncluir: $e\n');
 }
@@ -183,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**MatriculaDTO**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -197,7 +380,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerListAll**
-> matriculaControllerListAll()
+> BuiltList<MatriculaDTO> matriculaControllerListAll()
 
 
 
@@ -210,7 +393,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getMatriculaControllerApi();
 
 try {
-    api.matriculaControllerListAll();
+    final response = api.matriculaControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerListAll: $e\n');
 }
@@ -221,7 +405,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;MatriculaDTO&gt;**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -235,7 +419,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerListAllPage**
-> matriculaControllerListAllPage(page)
+> PageMatriculaDTO matriculaControllerListAllPage(page)
 
 
 
@@ -249,7 +433,8 @@ final api = Matricular().getMatriculaControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.matriculaControllerListAllPage(page);
+    final response = api.matriculaControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerListAllPage: $e\n');
 }
@@ -263,7 +448,140 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageMatriculaDTO**](PageMatriculaDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerListAllPageMatriculaListagemDTO**
+> BuiltList<MatriculaListagemDTO> matriculaControllerListAllPageMatriculaListagemDTO(offset, pageSize, statusMatricula)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final int offset = 56; // int | 
+final int pageSize = 56; // int | 
+final String statusMatricula = statusMatricula_example; // String | 
+
+try {
+    final response = api.matriculaControllerListAllPageMatriculaListagemDTO(offset, pageSize, statusMatricula);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerListAllPageMatriculaListagemDTO: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **offset** | **int**|  | 
+ **pageSize** | **int**|  | 
+ **statusMatricula** | **String**|  | 
+
+### Return type
+
+[**BuiltList&lt;MatriculaListagemDTO&gt;**](MatriculaListagemDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerListarAlunosPorTurma**
+> BuiltList<MatriculaListagemDTO> matriculaControllerListarAlunosPorTurma(idTurma)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final int idTurma = 789; // int | 
+
+try {
+    final response = api.matriculaControllerListarAlunosPorTurma(idTurma);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerListarAlunosPorTurma: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idTurma** | **int**|  | 
+
+### Return type
+
+[**BuiltList&lt;MatriculaListagemDTO&gt;**](MatriculaListagemDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matriculaControllerListarMatriculasListagemPorStatus**
+> BuiltList<MatriculaListagemDTO> matriculaControllerListarMatriculasListagemPorStatus(statusMatricula)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final String statusMatricula = statusMatricula_example; // String | 
+
+try {
+    final response = api.matriculaControllerListarMatriculasListagemPorStatus(statusMatricula);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerListarMatriculasListagemPorStatus: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **statusMatricula** | **String**|  | 
+
+### Return type
+
+[**BuiltList&lt;MatriculaListagemDTO&gt;**](MatriculaListagemDTO.md)
 
 ### Authorization
 
@@ -277,7 +595,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerObterPorId**
-> matriculaControllerObterPorId(id)
+> MatriculaDTO matriculaControllerObterPorId(id)
 
 
 
@@ -291,7 +609,8 @@ final api = Matricular().getMatriculaControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.matriculaControllerObterPorId(id);
+    final response = api.matriculaControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerObterPorId: $e\n');
 }
@@ -305,7 +624,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**MatriculaDTO**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -319,7 +638,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerRemover**
-> matriculaControllerRemover(id)
+> MatriculaDTO matriculaControllerRemover(id)
 
 
 
@@ -333,7 +652,8 @@ final api = Matricular().getMatriculaControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.matriculaControllerRemover(id);
+    final response = api.matriculaControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerRemover: $e\n');
 }
@@ -347,7 +667,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**MatriculaDTO**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -361,7 +681,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerSearchFieldsAction**
-> matriculaControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<MatriculaDTO> matriculaControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -375,7 +695,8 @@ final api = Matricular().getMatriculaControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.matriculaControllerSearchFieldsAction(searchFieldValue);
+    final response = api.matriculaControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerSearchFieldsAction: $e\n');
 }
@@ -389,7 +710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;MatriculaDTO&gt;**](MatriculaDTO.md)
 
 ### Authorization
 
@@ -403,7 +724,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matriculaControllerSearchFieldsActionPage**
-> matriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageMatriculaDTO matriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -420,7 +741,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.matriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.matriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling MatriculaControllerApi->matriculaControllerSearchFieldsActionPage: $e\n');
 }
@@ -437,7 +759,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageMatriculaDTO**](PageMatriculaDTO.md)
 
 ### Authorization
 
@@ -534,10 +856,55 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **matriculaControllerUploadDocumentos**
+> MatriculaDTO matriculaControllerUploadDocumentos(idMatricula, multipartFile)
+
+
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getMatriculaControllerApi();
+final int idMatricula = 789; // int | 
+final BuiltList<MultipartFile> multipartFile = /path/to/file.txt; // BuiltList<MultipartFile> | 
+
+try {
+    final response = api.matriculaControllerUploadDocumentos(idMatricula, multipartFile);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling MatriculaControllerApi->matriculaControllerUploadDocumentos: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idMatricula** | **int**|  | 
+ **multipartFile** | [**BuiltList&lt;MultipartFile&gt;**](MultipartFile.md)|  | [optional] 
+
+### Return type
+
+[**MatriculaDTO**](MatriculaDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **matriculaControllerValidaMatricula**
 > MatriculaDTO matriculaControllerValidaMatricula(matriculaDTO)
 
 
+
+Busca a quantidade de registros
 
 ### Example
 ```dart
@@ -571,7 +938,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'app/api/appAPI.dart';
+import 'app/utils/config_state.dart';
+import 'app/utils/security-store.dart';
 import 'routes.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  
-  
-  runApp(const MyApp());
+  //SharedPreferences prefs = await SharedPreferences.getInstance();
+  final storage = SecurityStore();
+  final state = ConfigState(prefs: storage);
+  final appAPI = AppAPI(config: state);
+  runApp(
+      MultiProvider(
+        providers: [
+          Provider(create: (_) => state,
+            dispose: (_, instance) => instance.dispose() ,),
+          Provider(create: (_) => appAPI,
+            dispose: (_, instance) => instance.dispose(),)
+        ],
+        child: const MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {

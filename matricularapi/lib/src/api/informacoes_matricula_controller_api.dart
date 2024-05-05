@@ -11,6 +11,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/message_response.dart';
+import 'package:matricular/src/model/page_informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
@@ -35,9 +36,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [InformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerAlterar({
+  Future<Response<InformacoesMatriculaDTO>>
+      informacoesMatriculaControllerAlterar({
     required int id,
     required InformacoesMatriculaDTO informacoesMatriculaDTO,
     CancelToken? cancelToken,
@@ -95,7 +97,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    InformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(InformacoesMatriculaDTO),
+            ) as InformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<InformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerIncluir
@@ -110,9 +141,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [InformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerIncluir({
+  Future<Response<InformacoesMatriculaDTO>>
+      informacoesMatriculaControllerIncluir({
     required InformacoesMatriculaDTO informacoesMatriculaDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -168,7 +200,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    InformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(InformacoesMatriculaDTO),
+            ) as InformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<InformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerListAll
@@ -182,9 +243,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<InformacoesMatriculaDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerListAll({
+  Future<Response<BuiltList<InformacoesMatriculaDTO>>>
+      informacoesMatriculaControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -219,7 +281,37 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<InformacoesMatriculaDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(
+                  BuiltList, [FullType(InformacoesMatriculaDTO)]),
+            ) as BuiltList<InformacoesMatriculaDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<InformacoesMatriculaDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerListAllPage
@@ -234,9 +326,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageInformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerListAllPage({
+  Future<Response<PageInformacoesMatriculaDTO>>
+      informacoesMatriculaControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -278,7 +371,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageInformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageInformacoesMatriculaDTO),
+            ) as PageInformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageInformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerObterPorId
@@ -293,9 +415,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [InformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerObterPorId({
+  Future<Response<InformacoesMatriculaDTO>>
+      informacoesMatriculaControllerObterPorId({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -332,7 +455,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    InformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(InformacoesMatriculaDTO),
+            ) as InformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<InformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerRemover
@@ -347,9 +499,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [InformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerRemover({
+  Future<Response<InformacoesMatriculaDTO>>
+      informacoesMatriculaControllerRemover({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -386,7 +539,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    InformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(InformacoesMatriculaDTO),
+            ) as InformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<InformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerSearchFieldsAction
@@ -401,9 +583,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<InformacoesMatriculaDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerSearchFieldsAction({
+  Future<Response<BuiltList<InformacoesMatriculaDTO>>>
+      informacoesMatriculaControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -459,7 +642,37 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<InformacoesMatriculaDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(
+                  BuiltList, [FullType(InformacoesMatriculaDTO)]),
+            ) as BuiltList<InformacoesMatriculaDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<InformacoesMatriculaDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerSearchFieldsActionPage
@@ -477,9 +690,10 @@ class InformacoesMatriculaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageInformacoesMatriculaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> informacoesMatriculaControllerSearchFieldsActionPage({
+  Future<Response<PageInformacoesMatriculaDTO>>
+      informacoesMatriculaControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -554,7 +768,36 @@ class InformacoesMatriculaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageInformacoesMatriculaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageInformacoesMatriculaDTO),
+            ) as PageInformacoesMatriculaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageInformacoesMatriculaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// informacoesMatriculaControllerSearchFieldsList

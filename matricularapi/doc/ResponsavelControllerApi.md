@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **responsavelControllerAlterar**
-> responsavelControllerAlterar(id, responsavelDTO)
+> ResponsavelDTO responsavelControllerAlterar(id, responsavelDTO)
 
 
 
@@ -36,7 +36,8 @@ final PkResponsavel id = ; // PkResponsavel |
 final ResponsavelDTO responsavelDTO = ; // ResponsavelDTO | 
 
 try {
-    api.responsavelControllerAlterar(id, responsavelDTO);
+    final response = api.responsavelControllerAlterar(id, responsavelDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ResponsavelDTO**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerIncluir**
-> responsavelControllerIncluir(responsavelDTO)
+> ResponsavelDTO responsavelControllerIncluir(responsavelDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getResponsavelControllerApi();
 final ResponsavelDTO responsavelDTO = ; // ResponsavelDTO | 
 
 try {
-    api.responsavelControllerIncluir(responsavelDTO);
+    final response = api.responsavelControllerIncluir(responsavelDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ResponsavelDTO**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerListAll**
-> responsavelControllerListAll()
+> BuiltList<ResponsavelDTO> responsavelControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getResponsavelControllerApi();
 
 try {
-    api.responsavelControllerListAll();
+    final response = api.responsavelControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;ResponsavelDTO&gt;**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerListAllPage**
-> responsavelControllerListAllPage(page)
+> PageResponsavelDTO responsavelControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getResponsavelControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.responsavelControllerListAllPage(page);
+    final response = api.responsavelControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageResponsavelDTO**](PageResponsavelDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerObterPorId**
-> responsavelControllerObterPorId(id)
+> ResponsavelDTO responsavelControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getResponsavelControllerApi();
 final PkResponsavel id = ; // PkResponsavel | 
 
 try {
-    api.responsavelControllerObterPorId(id);
+    final response = api.responsavelControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ResponsavelDTO**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerRemover**
-> responsavelControllerRemover(id)
+> ResponsavelDTO responsavelControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getResponsavelControllerApi();
 final PkResponsavel id = ; // PkResponsavel | 
 
 try {
-    api.responsavelControllerRemover(id);
+    final response = api.responsavelControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**ResponsavelDTO**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerSearchFieldsAction**
-> responsavelControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<ResponsavelDTO> responsavelControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getResponsavelControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.responsavelControllerSearchFieldsAction(searchFieldValue);
+    final response = api.responsavelControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;ResponsavelDTO&gt;**](ResponsavelDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **responsavelControllerSearchFieldsActionPage**
-> responsavelControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageResponsavelDTO responsavelControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.responsavelControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.responsavelControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling ResponsavelControllerApi->responsavelControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageResponsavelDTO**](PageResponsavelDTO.md)
 
 ### Authorization
 

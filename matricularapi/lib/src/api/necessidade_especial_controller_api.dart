@@ -11,6 +11,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/necessidade_especial_dto.dart';
+import 'package:matricular/src/model/page_necessidade_especial_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
@@ -35,9 +36,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [NecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerAlterar({
+  Future<Response<NecessidadeEspecialDTO>>
+      necessidadeEspecialControllerAlterar({
     required int id,
     required NecessidadeEspecialDTO necessidadeEspecialDTO,
     CancelToken? cancelToken,
@@ -95,7 +97,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    NecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(NecessidadeEspecialDTO),
+            ) as NecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<NecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerIncluir
@@ -110,9 +141,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [NecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerIncluir({
+  Future<Response<NecessidadeEspecialDTO>>
+      necessidadeEspecialControllerIncluir({
     required NecessidadeEspecialDTO necessidadeEspecialDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -168,7 +200,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    NecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(NecessidadeEspecialDTO),
+            ) as NecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<NecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerListAll
@@ -182,9 +243,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<NecessidadeEspecialDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerListAll({
+  Future<Response<BuiltList<NecessidadeEspecialDTO>>>
+      necessidadeEspecialControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -219,7 +281,37 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<NecessidadeEspecialDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType:
+                  const FullType(BuiltList, [FullType(NecessidadeEspecialDTO)]),
+            ) as BuiltList<NecessidadeEspecialDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<NecessidadeEspecialDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerListAllPage
@@ -234,9 +326,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageNecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerListAllPage({
+  Future<Response<PageNecessidadeEspecialDTO>>
+      necessidadeEspecialControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -278,7 +371,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageNecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageNecessidadeEspecialDTO),
+            ) as PageNecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageNecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerObterPorId
@@ -293,9 +415,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [NecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerObterPorId({
+  Future<Response<NecessidadeEspecialDTO>>
+      necessidadeEspecialControllerObterPorId({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -332,7 +455,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    NecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(NecessidadeEspecialDTO),
+            ) as NecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<NecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerRemover
@@ -347,9 +499,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [NecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerRemover({
+  Future<Response<NecessidadeEspecialDTO>>
+      necessidadeEspecialControllerRemover({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -386,7 +539,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    NecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(NecessidadeEspecialDTO),
+            ) as NecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<NecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerSearchFieldsAction
@@ -401,9 +583,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<NecessidadeEspecialDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerSearchFieldsAction({
+  Future<Response<BuiltList<NecessidadeEspecialDTO>>>
+      necessidadeEspecialControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -459,7 +642,37 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<NecessidadeEspecialDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType:
+                  const FullType(BuiltList, [FullType(NecessidadeEspecialDTO)]),
+            ) as BuiltList<NecessidadeEspecialDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<NecessidadeEspecialDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerSearchFieldsActionPage
@@ -477,9 +690,10 @@ class NecessidadeEspecialControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageNecessidadeEspecialDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> necessidadeEspecialControllerSearchFieldsActionPage({
+  Future<Response<PageNecessidadeEspecialDTO>>
+      necessidadeEspecialControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -554,7 +768,36 @@ class NecessidadeEspecialControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageNecessidadeEspecialDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageNecessidadeEspecialDTO),
+            ) as PageNecessidadeEspecialDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageNecessidadeEspecialDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// necessidadeEspecialControllerSearchFieldsList

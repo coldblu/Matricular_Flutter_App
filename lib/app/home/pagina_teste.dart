@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class NewPageScreen extends StatelessWidget {
   final String texto;
 
-  NewPageScreen(this.texto);
+  const NewPageScreen(this.texto, {super.key});
 
   @override
   Widget build(BuildContext context) {

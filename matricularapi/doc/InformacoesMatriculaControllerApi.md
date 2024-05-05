@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **informacoesMatriculaControllerAlterar**
-> informacoesMatriculaControllerAlterar(id, informacoesMatriculaDTO)
+> InformacoesMatriculaDTO informacoesMatriculaControllerAlterar(id, informacoesMatriculaDTO)
 
 
 
@@ -36,7 +36,8 @@ final int id = 789; // int |
 final InformacoesMatriculaDTO informacoesMatriculaDTO = ; // InformacoesMatriculaDTO | 
 
 try {
-    api.informacoesMatriculaControllerAlterar(id, informacoesMatriculaDTO);
+    final response = api.informacoesMatriculaControllerAlterar(id, informacoesMatriculaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**InformacoesMatriculaDTO**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerIncluir**
-> informacoesMatriculaControllerIncluir(informacoesMatriculaDTO)
+> InformacoesMatriculaDTO informacoesMatriculaControllerIncluir(informacoesMatriculaDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getInformacoesMatriculaControllerApi();
 final InformacoesMatriculaDTO informacoesMatriculaDTO = ; // InformacoesMatriculaDTO | 
 
 try {
-    api.informacoesMatriculaControllerIncluir(informacoesMatriculaDTO);
+    final response = api.informacoesMatriculaControllerIncluir(informacoesMatriculaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**InformacoesMatriculaDTO**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerListAll**
-> informacoesMatriculaControllerListAll()
+> BuiltList<InformacoesMatriculaDTO> informacoesMatriculaControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getInformacoesMatriculaControllerApi();
 
 try {
-    api.informacoesMatriculaControllerListAll();
+    final response = api.informacoesMatriculaControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;InformacoesMatriculaDTO&gt;**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerListAllPage**
-> informacoesMatriculaControllerListAllPage(page)
+> PageInformacoesMatriculaDTO informacoesMatriculaControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getInformacoesMatriculaControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.informacoesMatriculaControllerListAllPage(page);
+    final response = api.informacoesMatriculaControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageInformacoesMatriculaDTO**](PageInformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerObterPorId**
-> informacoesMatriculaControllerObterPorId(id)
+> InformacoesMatriculaDTO informacoesMatriculaControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getInformacoesMatriculaControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.informacoesMatriculaControllerObterPorId(id);
+    final response = api.informacoesMatriculaControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**InformacoesMatriculaDTO**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerRemover**
-> informacoesMatriculaControllerRemover(id)
+> InformacoesMatriculaDTO informacoesMatriculaControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getInformacoesMatriculaControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.informacoesMatriculaControllerRemover(id);
+    final response = api.informacoesMatriculaControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**InformacoesMatriculaDTO**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerSearchFieldsAction**
-> informacoesMatriculaControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<InformacoesMatriculaDTO> informacoesMatriculaControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getInformacoesMatriculaControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.informacoesMatriculaControllerSearchFieldsAction(searchFieldValue);
+    final response = api.informacoesMatriculaControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;InformacoesMatriculaDTO&gt;**](InformacoesMatriculaDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **informacoesMatriculaControllerSearchFieldsActionPage**
-> informacoesMatriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageInformacoesMatriculaDTO informacoesMatriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.informacoesMatriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.informacoesMatriculaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling InformacoesMatriculaControllerApi->informacoesMatriculaControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageInformacoesMatriculaDTO**](PageInformacoesMatriculaDTO.md)
 
 ### Authorization
 

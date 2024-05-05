@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/message_response.dart';
+import 'package:matricular/src/model/page_responsavel_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/pk_responsavel.dart';
 import 'package:matricular/src/model/responsavel_dto.dart';
@@ -36,9 +37,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerAlterar({
+  Future<Response<ResponsavelDTO>> responsavelControllerAlterar({
     required PkResponsavel id,
     required ResponsavelDTO responsavelDTO,
     CancelToken? cancelToken,
@@ -97,7 +98,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(ResponsavelDTO),
+            ) as ResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerIncluir
@@ -112,9 +142,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerIncluir({
+  Future<Response<ResponsavelDTO>> responsavelControllerIncluir({
     required ResponsavelDTO responsavelDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -169,7 +199,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(ResponsavelDTO),
+            ) as ResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerListAll
@@ -183,9 +242,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ResponsavelDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerListAll({
+  Future<Response<BuiltList<ResponsavelDTO>>> responsavelControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -220,7 +279,37 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<ResponsavelDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType:
+                  const FullType(BuiltList, [FullType(ResponsavelDTO)]),
+            ) as BuiltList<ResponsavelDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<ResponsavelDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerListAllPage
@@ -235,9 +324,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerListAllPage({
+  Future<Response<PageResponsavelDTO>> responsavelControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -279,7 +368,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageResponsavelDTO),
+            ) as PageResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerObterPorId
@@ -294,9 +412,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerObterPorId({
+  Future<Response<ResponsavelDTO>> responsavelControllerObterPorId({
     required PkResponsavel id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -335,7 +453,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(ResponsavelDTO),
+            ) as ResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerRemover
@@ -350,9 +497,9 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [ResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerRemover({
+  Future<Response<ResponsavelDTO>> responsavelControllerRemover({
     required PkResponsavel id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -391,7 +538,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    ResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(ResponsavelDTO),
+            ) as ResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerSearchFieldsAction
@@ -406,9 +582,10 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<ResponsavelDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerSearchFieldsAction({
+  Future<Response<BuiltList<ResponsavelDTO>>>
+      responsavelControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -464,7 +641,37 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<ResponsavelDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType:
+                  const FullType(BuiltList, [FullType(ResponsavelDTO)]),
+            ) as BuiltList<ResponsavelDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<ResponsavelDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerSearchFieldsActionPage
@@ -482,9 +689,10 @@ class ResponsavelControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageResponsavelDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> responsavelControllerSearchFieldsActionPage({
+  Future<Response<PageResponsavelDTO>>
+      responsavelControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -559,7 +767,36 @@ class ResponsavelControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageResponsavelDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageResponsavelDTO),
+            ) as PageResponsavelDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageResponsavelDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// responsavelControllerSearchFieldsList

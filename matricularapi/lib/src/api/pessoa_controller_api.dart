@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/message_response.dart';
+import 'package:matricular/src/model/page_pessoa_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/pessoa_dto.dart';
 import 'package:matricular/src/model/search_field.dart';
@@ -35,9 +36,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerAlterar({
+  Future<Response<PessoaDTO>> pessoaControllerAlterar({
     required String id,
     required PessoaDTO pessoaDTO,
     CancelToken? cancelToken,
@@ -96,7 +97,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PessoaDTO),
+            ) as PessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerIncluir
@@ -111,9 +141,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerIncluir({
+  Future<Response<PessoaDTO>> pessoaControllerIncluir({
     required PessoaDTO pessoaDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -168,7 +198,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PessoaDTO),
+            ) as PessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerListAll
@@ -182,9 +241,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<PessoaDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerListAll({
+  Future<Response<BuiltList<PessoaDTO>>> pessoaControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -219,7 +278,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<PessoaDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(PessoaDTO)]),
+            ) as BuiltList<PessoaDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<PessoaDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerListAllPage
@@ -234,9 +322,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PagePessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerListAllPage({
+  Future<Response<PagePessoaDTO>> pessoaControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -278,7 +366,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PagePessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PagePessoaDTO),
+            ) as PagePessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PagePessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerObterPorId
@@ -293,9 +410,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerObterPorId({
+  Future<Response<PessoaDTO>> pessoaControllerObterPorId({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -334,7 +451,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PessoaDTO),
+            ) as PessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerRemover
@@ -349,9 +495,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerRemover({
+  Future<Response<PessoaDTO>> pessoaControllerRemover({
     required String id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -390,7 +536,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PessoaDTO),
+            ) as PessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerSearchFieldsAction
@@ -405,9 +580,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<PessoaDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerSearchFieldsAction({
+  Future<Response<BuiltList<PessoaDTO>>> pessoaControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -463,7 +638,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<PessoaDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(PessoaDTO)]),
+            ) as BuiltList<PessoaDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<PessoaDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerSearchFieldsActionPage
@@ -481,9 +685,9 @@ class PessoaControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PagePessoaDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> pessoaControllerSearchFieldsActionPage({
+  Future<Response<PagePessoaDTO>> pessoaControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -558,7 +762,36 @@ class PessoaControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PagePessoaDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PagePessoaDTO),
+            ) as PagePessoaDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PagePessoaDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// pessoaControllerSearchFieldsList

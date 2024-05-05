@@ -5,6 +5,7 @@ import 'app/home/home_page.dart' as a1;
 import 'app/login/login_page.dart' as a2;
 import 'app/prefers/prefers_page.dart' as a3;
 import 'app/turma/turma_page.dart' as a4;
+import 'app/turmas/turma_page.dart' as a5;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -13,7 +14,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      a0.FuncionarioPage(),
+      const a0.FuncionarioPage(),
     ),
   ),
   RouteEntity(
@@ -22,7 +23,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      a1.HomePage(),
+      const a1.HomePage(),
     ),
   ),
   RouteEntity(
@@ -52,6 +53,15 @@ List<RouteEntity> get routes => [
       a4.TurmaPage(),
     ),
   ),
+  RouteEntity(
+    key: '/turmas/turma',
+    uri: Uri.parse('/turmas/turma'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a5.TurmaPage(),
+    ),
+  ),
 ];
 
 const routePaths = (
@@ -64,4 +74,8 @@ const routePaths = (
   login: '/login',
   prefers: '/prefers',
   turma: '/turma',
+  turmas: (
+    path: '/turmas',
+    turma: '/turmas/turma',
+  ),
 );

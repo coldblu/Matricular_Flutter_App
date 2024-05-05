@@ -11,6 +11,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/endereco_dto.dart';
 import 'package:matricular/src/model/message_response.dart';
+import 'package:matricular/src/model/page_endereco_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/search_field.dart';
 import 'package:matricular/src/model/search_field_value.dart';
@@ -35,9 +36,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [EnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerAlterar({
+  Future<Response<EnderecoDTO>> enderecoControllerAlterar({
     required int id,
     required EnderecoDTO enderecoDTO,
     CancelToken? cancelToken,
@@ -94,7 +95,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    EnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(EnderecoDTO),
+            ) as EnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<EnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerIncluir
@@ -109,9 +139,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [EnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerIncluir({
+  Future<Response<EnderecoDTO>> enderecoControllerIncluir({
     required EnderecoDTO enderecoDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -166,7 +196,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    EnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(EnderecoDTO),
+            ) as EnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<EnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerListAll
@@ -180,9 +239,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<EnderecoDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerListAll({
+  Future<Response<BuiltList<EnderecoDTO>>> enderecoControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -217,7 +276,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<EnderecoDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(EnderecoDTO)]),
+            ) as BuiltList<EnderecoDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<EnderecoDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerListAllPage
@@ -232,9 +320,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageEnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerListAllPage({
+  Future<Response<PageEnderecoDTO>> enderecoControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -276,7 +364,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageEnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageEnderecoDTO),
+            ) as PageEnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageEnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerObterPorId
@@ -291,9 +408,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [EnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerObterPorId({
+  Future<Response<EnderecoDTO>> enderecoControllerObterPorId({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -330,7 +447,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    EnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(EnderecoDTO),
+            ) as EnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<EnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerRemover
@@ -345,9 +491,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [EnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerRemover({
+  Future<Response<EnderecoDTO>> enderecoControllerRemover({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -384,7 +530,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    EnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(EnderecoDTO),
+            ) as EnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<EnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerSearchFieldsAction
@@ -399,9 +574,10 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<EnderecoDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerSearchFieldsAction({
+  Future<Response<BuiltList<EnderecoDTO>>>
+      enderecoControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -457,7 +633,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<EnderecoDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(EnderecoDTO)]),
+            ) as BuiltList<EnderecoDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<EnderecoDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerSearchFieldsActionPage
@@ -475,9 +680,9 @@ class EnderecoControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageEnderecoDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> enderecoControllerSearchFieldsActionPage({
+  Future<Response<PageEnderecoDTO>> enderecoControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -552,7 +757,36 @@ class EnderecoControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageEnderecoDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageEnderecoDTO),
+            ) as PageEnderecoDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageEnderecoDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// enderecoControllerSearchFieldsList

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **necessidadeEspecialControllerAlterar**
-> necessidadeEspecialControllerAlterar(id, necessidadeEspecialDTO)
+> NecessidadeEspecialDTO necessidadeEspecialControllerAlterar(id, necessidadeEspecialDTO)
 
 
 
@@ -36,7 +36,8 @@ final int id = 789; // int |
 final NecessidadeEspecialDTO necessidadeEspecialDTO = ; // NecessidadeEspecialDTO | 
 
 try {
-    api.necessidadeEspecialControllerAlterar(id, necessidadeEspecialDTO);
+    final response = api.necessidadeEspecialControllerAlterar(id, necessidadeEspecialDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**NecessidadeEspecialDTO**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerIncluir**
-> necessidadeEspecialControllerIncluir(necessidadeEspecialDTO)
+> NecessidadeEspecialDTO necessidadeEspecialControllerIncluir(necessidadeEspecialDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getNecessidadeEspecialControllerApi();
 final NecessidadeEspecialDTO necessidadeEspecialDTO = ; // NecessidadeEspecialDTO | 
 
 try {
-    api.necessidadeEspecialControllerIncluir(necessidadeEspecialDTO);
+    final response = api.necessidadeEspecialControllerIncluir(necessidadeEspecialDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**NecessidadeEspecialDTO**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerListAll**
-> necessidadeEspecialControllerListAll()
+> BuiltList<NecessidadeEspecialDTO> necessidadeEspecialControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getNecessidadeEspecialControllerApi();
 
 try {
-    api.necessidadeEspecialControllerListAll();
+    final response = api.necessidadeEspecialControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;NecessidadeEspecialDTO&gt;**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerListAllPage**
-> necessidadeEspecialControllerListAllPage(page)
+> PageNecessidadeEspecialDTO necessidadeEspecialControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getNecessidadeEspecialControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.necessidadeEspecialControllerListAllPage(page);
+    final response = api.necessidadeEspecialControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageNecessidadeEspecialDTO**](PageNecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerObterPorId**
-> necessidadeEspecialControllerObterPorId(id)
+> NecessidadeEspecialDTO necessidadeEspecialControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getNecessidadeEspecialControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.necessidadeEspecialControllerObterPorId(id);
+    final response = api.necessidadeEspecialControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**NecessidadeEspecialDTO**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerRemover**
-> necessidadeEspecialControllerRemover(id)
+> NecessidadeEspecialDTO necessidadeEspecialControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getNecessidadeEspecialControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.necessidadeEspecialControllerRemover(id);
+    final response = api.necessidadeEspecialControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**NecessidadeEspecialDTO**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerSearchFieldsAction**
-> necessidadeEspecialControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<NecessidadeEspecialDTO> necessidadeEspecialControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getNecessidadeEspecialControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.necessidadeEspecialControllerSearchFieldsAction(searchFieldValue);
+    final response = api.necessidadeEspecialControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;NecessidadeEspecialDTO&gt;**](NecessidadeEspecialDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **necessidadeEspecialControllerSearchFieldsActionPage**
-> necessidadeEspecialControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageNecessidadeEspecialDTO necessidadeEspecialControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.necessidadeEspecialControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.necessidadeEspecialControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling NecessidadeEspecialControllerApi->necessidadeEspecialControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageNecessidadeEspecialDTO**](PageNecessidadeEspecialDTO.md)
 
 ### Authorization
 

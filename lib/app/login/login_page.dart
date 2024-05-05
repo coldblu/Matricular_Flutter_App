@@ -3,14 +3,33 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:matricular/matricular.dart';
+import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
 
 import '../../routes.dart';
+import '../api/appAPI.dart';
+import '../utils/config_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  static Route<void> route() {
+    return MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => MultiProvider(
+          providers: [
+            Provider(
+              create: (_) => context.read<ConfigState>(),
+              dispose: (_, instance) => instance.dispose(),
+            ),
+            Provider(create: (_) => context.read<AppAPI>())
+          ],
+          child: const LoginPage(),
+        )
+    );
+  }
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -18,12 +37,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final url = signal('');
-
   final login = signal('');
   final password = signal('');
   late final isValid =
   computed(() => login().isNotEmpty && password().isNotEmpty);
   final passwordError = signal<String?>(null);
+  late AppAPI appAPI;
+  late Matricular matricularApi;
+
+  void showMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message, style: const TextStyle(fontSize: 22.0)),
+    ));
+  }
 
   @override
   void initState() {
@@ -36,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
     //WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
       final prefs = await SharedPreferences.getInstance();
-      url.set(prefs.getString('URL') ?? 'http://192.168.10.100');
+      url.set(prefs.getString('URL') ?? 'http://192.168.3.107:8080');
     });
   }
 
@@ -50,23 +76,26 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if(ok) {
-      debugPrint("URL %ss"+url());
-      final authenticator = Matricular(basePathOverride: url()).getAuthAPIApi();
-      var authoDTObuilder = AuthDTOBuilder();
-      authoDTObuilder.login = login();;
-      authoDTObuilder.senha = password();
-
-
+      debugPrint("URL %ss${url()}");
+      final authenticator = matricularApi.getAuthAPIApi();
       try {
+        var authoDTObuilder = AuthDTOBuilder();
+        authoDTObuilder.login = login();
+        authoDTObuilder.senha = password();
         final response = await authenticator.login(authDTO: authoDTObuilder.build());
         if(response.statusCode == 200){
+          appAPI.config.token.set(response.data!.accessToken!);
           debugPrint("ok validado");
           Routefly.navigate(routePaths.home);
+        }else {
+          message() {
+            showMessage(context, "Login Falhou: ${response.data}");
+          }
+          message();
         }
-
       } on DioException catch (e) {
         print("Exception when calling authenticator: $e\n");
-      };
+      }
     }
   }
 

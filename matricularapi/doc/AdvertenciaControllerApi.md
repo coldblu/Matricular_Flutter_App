@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **advertenciaControllerAlterar**
-> advertenciaControllerAlterar(id, advertenciaDTO)
+> AdvertenciaDTO advertenciaControllerAlterar(id, advertenciaDTO)
 
 
 
@@ -36,7 +36,8 @@ final PkAdvertencia id = ; // PkAdvertencia |
 final AdvertenciaDTO advertenciaDTO = ; // AdvertenciaDTO | 
 
 try {
-    api.advertenciaControllerAlterar(id, advertenciaDTO);
+    final response = api.advertenciaControllerAlterar(id, advertenciaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AdvertenciaDTO**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerIncluir**
-> advertenciaControllerIncluir(advertenciaDTO)
+> AdvertenciaDTO advertenciaControllerIncluir(advertenciaDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getAdvertenciaControllerApi();
 final AdvertenciaDTO advertenciaDTO = ; // AdvertenciaDTO | 
 
 try {
-    api.advertenciaControllerIncluir(advertenciaDTO);
+    final response = api.advertenciaControllerIncluir(advertenciaDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AdvertenciaDTO**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerListAll**
-> advertenciaControllerListAll()
+> BuiltList<AdvertenciaDTO> advertenciaControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getAdvertenciaControllerApi();
 
 try {
-    api.advertenciaControllerListAll();
+    final response = api.advertenciaControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;AdvertenciaDTO&gt;**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerListAllPage**
-> advertenciaControllerListAllPage(page)
+> PageAdvertenciaDTO advertenciaControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getAdvertenciaControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.advertenciaControllerListAllPage(page);
+    final response = api.advertenciaControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageAdvertenciaDTO**](PageAdvertenciaDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerObterPorId**
-> advertenciaControllerObterPorId(id)
+> AdvertenciaDTO advertenciaControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getAdvertenciaControllerApi();
 final PkAdvertencia id = ; // PkAdvertencia | 
 
 try {
-    api.advertenciaControllerObterPorId(id);
+    final response = api.advertenciaControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AdvertenciaDTO**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerRemover**
-> advertenciaControllerRemover(id)
+> AdvertenciaDTO advertenciaControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getAdvertenciaControllerApi();
 final PkAdvertencia id = ; // PkAdvertencia | 
 
 try {
-    api.advertenciaControllerRemover(id);
+    final response = api.advertenciaControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**AdvertenciaDTO**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerSearchFieldsAction**
-> advertenciaControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<AdvertenciaDTO> advertenciaControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getAdvertenciaControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.advertenciaControllerSearchFieldsAction(searchFieldValue);
+    final response = api.advertenciaControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;AdvertenciaDTO&gt;**](AdvertenciaDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **advertenciaControllerSearchFieldsActionPage**
-> advertenciaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageAdvertenciaDTO advertenciaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.advertenciaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.advertenciaControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling AdvertenciaControllerApi->advertenciaControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageAdvertenciaDTO**](PageAdvertenciaDTO.md)
 
 ### Authorization
 

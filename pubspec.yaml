@@ -21,7 +21,10 @@ dependencies:
   matricular:
     path: matricularapi
   dio: ^5.4.2+1
+  provider: ^6.1.2
+  flutter_secure_storage: ^9.0.0
 
+  built_collection: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

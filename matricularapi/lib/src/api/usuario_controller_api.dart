@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/message_response.dart';
+import 'package:matricular/src/model/page_usuario_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/redefinir_senha_dto.dart';
 import 'package:matricular/src/model/search_field.dart';
@@ -161,9 +162,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [UsuarioDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerIncluir({
+  Future<Response<UsuarioDTO>> usuarioControllerIncluir({
     required UsuarioDTO usuarioDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -218,7 +219,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    UsuarioDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(UsuarioDTO),
+            ) as UsuarioDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<UsuarioDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerListAll
@@ -232,9 +262,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<UsuarioDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerListAll({
+  Future<Response<BuiltList<UsuarioDTO>>> usuarioControllerListAll({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -269,7 +299,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<UsuarioDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(UsuarioDTO)]),
+            ) as BuiltList<UsuarioDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<UsuarioDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerListAllPage
@@ -284,9 +343,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageUsuarioDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerListAllPage({
+  Future<Response<PageUsuarioDTO>> usuarioControllerListAllPage({
     required Pageable page,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -328,7 +387,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageUsuarioDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageUsuarioDTO),
+            ) as PageUsuarioDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageUsuarioDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerListAllWithSort
@@ -462,9 +550,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [UsuarioDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerObterPorId({
+  Future<Response<UsuarioDTO>> usuarioControllerObterPorId({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -501,7 +589,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    UsuarioDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(UsuarioDTO),
+            ) as UsuarioDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<UsuarioDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerRedefinirSenha
@@ -613,9 +730,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [UsuarioDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerRemover({
+  Future<Response<UsuarioDTO>> usuarioControllerRemover({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -652,7 +769,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    UsuarioDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(UsuarioDTO),
+            ) as UsuarioDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<UsuarioDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerSearchFieldsAction
@@ -667,9 +813,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [BuiltList<UsuarioDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerSearchFieldsAction({
+  Future<Response<BuiltList<UsuarioDTO>>> usuarioControllerSearchFieldsAction({
     required BuiltList<SearchFieldValue> searchFieldValue,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -725,7 +871,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    BuiltList<UsuarioDTO>? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(BuiltList, [FullType(UsuarioDTO)]),
+            ) as BuiltList<UsuarioDTO>;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<BuiltList<UsuarioDTO>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerSearchFieldsActionPage
@@ -743,9 +918,9 @@ class UsuarioControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [PageUsuarioDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> usuarioControllerSearchFieldsActionPage({
+  Future<Response<PageUsuarioDTO>> usuarioControllerSearchFieldsActionPage({
     required BuiltList<SearchFieldValue> searchFieldValue,
     int? page = 0,
     int? size = 5,
@@ -820,7 +995,36 @@ class UsuarioControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    PageUsuarioDTO? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(PageUsuarioDTO),
+            ) as PageUsuarioDTO;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PageUsuarioDTO>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
   /// usuarioControllerSearchFieldsList

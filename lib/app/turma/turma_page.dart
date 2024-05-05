@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matricular_app/app/home/pagina_teste.dart';
 
 class TurmaPage extends StatefulWidget {
+  const TurmaPage({super.key});
+
 
   @override
   State<TurmaPage> createState() => _TurmaPageState();
@@ -15,7 +15,7 @@ class _TurmaPageState extends State<TurmaPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text('Turmas'),
+          title: const Text('Turmas'),
         ),
     );
   }

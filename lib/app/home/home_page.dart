@@ -1,9 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matricular_app/app/funcionarios/funcionario_page.dart';
 import 'package:matricular_app/app/home/pagina_teste.dart';
 
+import '../turmas/turma_page.dart';
+
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -12,9 +15,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _indiceAtual = 0; // Variável para controlar o índice das telas
   final List<Widget> _telas = [
-    NewPageScreen("Início"),
-    FuncionarioPage(),
-    NewPageScreen("Turmas")
+    const NewPageScreen("Início"),
+    const FuncionarioPage(),
+    const TurmaPage()
   ];
 
   void onTabTapped(int index) {
@@ -28,13 +31,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text('Tela Principal'),
+          title: const Text('Tela Principal'),
         ),
       body: _telas[_indiceAtual],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,
         onTap: onTabTapped, //Chamando método ao clicar em uma das opções
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: "Início"

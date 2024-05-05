@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **enderecoControllerAlterar**
-> enderecoControllerAlterar(id, enderecoDTO)
+> EnderecoDTO enderecoControllerAlterar(id, enderecoDTO)
 
 
 
@@ -36,7 +36,8 @@ final int id = 789; // int |
 final EnderecoDTO enderecoDTO = ; // EnderecoDTO | 
 
 try {
-    api.enderecoControllerAlterar(id, enderecoDTO);
+    final response = api.enderecoControllerAlterar(id, enderecoDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**EnderecoDTO**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerIncluir**
-> enderecoControllerIncluir(enderecoDTO)
+> EnderecoDTO enderecoControllerIncluir(enderecoDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getEnderecoControllerApi();
 final EnderecoDTO enderecoDTO = ; // EnderecoDTO | 
 
 try {
-    api.enderecoControllerIncluir(enderecoDTO);
+    final response = api.enderecoControllerIncluir(enderecoDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**EnderecoDTO**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerListAll**
-> enderecoControllerListAll()
+> BuiltList<EnderecoDTO> enderecoControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getEnderecoControllerApi();
 
 try {
-    api.enderecoControllerListAll();
+    final response = api.enderecoControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;EnderecoDTO&gt;**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerListAllPage**
-> enderecoControllerListAllPage(page)
+> PageEnderecoDTO enderecoControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getEnderecoControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.enderecoControllerListAllPage(page);
+    final response = api.enderecoControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageEnderecoDTO**](PageEnderecoDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerObterPorId**
-> enderecoControllerObterPorId(id)
+> EnderecoDTO enderecoControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getEnderecoControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.enderecoControllerObterPorId(id);
+    final response = api.enderecoControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**EnderecoDTO**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerRemover**
-> enderecoControllerRemover(id)
+> EnderecoDTO enderecoControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getEnderecoControllerApi();
 final int id = 789; // int | 
 
 try {
-    api.enderecoControllerRemover(id);
+    final response = api.enderecoControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**EnderecoDTO**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerSearchFieldsAction**
-> enderecoControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<EnderecoDTO> enderecoControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getEnderecoControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.enderecoControllerSearchFieldsAction(searchFieldValue);
+    final response = api.enderecoControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;EnderecoDTO&gt;**](EnderecoDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **enderecoControllerSearchFieldsActionPage**
-> enderecoControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageEnderecoDTO enderecoControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.enderecoControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.enderecoControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling EnderecoControllerApi->enderecoControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageEnderecoDTO**](PageEnderecoDTO.md)
 
 ### Authorization
 

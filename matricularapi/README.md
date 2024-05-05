@@ -51,7 +51,8 @@ final PkAdvertencia id = ; // PkAdvertencia |
 final AdvertenciaDTO advertenciaDTO = ; // AdvertenciaDTO | 
 
 try {
-    api.advertenciaControllerAlterar(id, advertenciaDTO);
+    final response = await api.advertenciaControllerAlterar(id, advertenciaDTO);
+    print(response);
 } catch on DioException (e) {
     print("Exception when calling AdvertenciaControllerApi->advertenciaControllerAlterar: $e\n");
 }
@@ -99,16 +100,24 @@ Class | Method | HTTP request | Description
 [*InformacoesMatriculaControllerApi*](doc/InformacoesMatriculaControllerApi.md) | [**informacoesMatriculaControllerSearchFieldsList**](doc/InformacoesMatriculaControllerApi.md#informacoesmatriculacontrollersearchfieldslist) | **GET** /api/v1/infomatricula/search-fields | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerAlterar**](doc/MatriculaControllerApi.md#matriculacontrolleralterar) | **PUT** /api/v1/matricula/{id} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerAtualizaContraChequeMatricula**](doc/MatriculaControllerApi.md#matriculacontrolleratualizacontrachequematricula) | **POST** /api/v1/matricula/documento/atualiza-contra-cheque | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerCount**](doc/MatriculaControllerApi.md#matriculacontrollercount) | **GET** /api/v1/matricula/listar-matriculas-status-pagination | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerGerarTermo**](doc/MatriculaControllerApi.md#matriculacontrollergerartermo) | **POST** /api/v1/matricula/termo/{id} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerGetDocumentoMatricula**](doc/MatriculaControllerApi.md#matriculacontrollergetdocumentomatricula) | **GET** /api/v1/matricula/documento/{caminhodoc} | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerGetMatriculaVisualizar**](doc/MatriculaControllerApi.md#matriculacontrollergetmatriculavisualizar) | **GET** /api/v1/matricula/matricula-visualiza | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerGetTermo**](doc/MatriculaControllerApi.md#matriculacontrollergettermo) | **GET** /api/v1/matricula/termo/{caminhodoc} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerIncluir**](doc/MatriculaControllerApi.md#matriculacontrollerincluir) | **POST** /api/v1/matricula | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListAll**](doc/MatriculaControllerApi.md#matriculacontrollerlistall) | **GET** /api/v1/matricula | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListAllPage**](doc/MatriculaControllerApi.md#matriculacontrollerlistallpage) | **GET** /api/v1/matricula/page | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListAllPageMatriculaListagemDTO**](doc/MatriculaControllerApi.md#matriculacontrollerlistallpagematriculalistagemdto) | **GET** /api/v1/matricula/listar-matriculas-status-pagination/{offset}/{pageSize} | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListarAlunosPorTurma**](doc/MatriculaControllerApi.md#matriculacontrollerlistaralunosporturma) | **GET** /api/v1/matricula/listar-por-turma | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerListarMatriculasListagemPorStatus**](doc/MatriculaControllerApi.md#matriculacontrollerlistarmatriculaslistagemporstatus) | **GET** /api/v1/matricula/listar-matriculas-status | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerObterPorId**](doc/MatriculaControllerApi.md#matriculacontrollerobterporid) | **GET** /api/v1/matricula/{id} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerRemover**](doc/MatriculaControllerApi.md#matriculacontrollerremover) | **DELETE** /api/v1/matricula/{id} | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsAction**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldsaction) | **POST** /api/v1/matricula/search-fields | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsActionPage**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldsactionpage) | **POST** /api/v1/matricula/search-fields/page | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerSearchFieldsList**](doc/MatriculaControllerApi.md#matriculacontrollersearchfieldslist) | **GET** /api/v1/matricula/search-fields | 
-[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerUploadDocumento**](doc/MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documentos | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerUploadDocumento**](doc/MatriculaControllerApi.md#matriculacontrolleruploaddocumento) | **POST** /api/v1/matricula/documento | 
+[*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerUploadDocumentos**](doc/MatriculaControllerApi.md#matriculacontrolleruploaddocumentos) | **POST** /api/v1/matricula/documentos | 
 [*MatriculaControllerApi*](doc/MatriculaControllerApi.md) | [**matriculaControllerValidaMatricula**](doc/MatriculaControllerApi.md#matriculacontrollervalidamatricula) | **POST** /api/v1/matricula/valida | 
 [*NecessidadeEspecialControllerApi*](doc/NecessidadeEspecialControllerApi.md) | [**necessidadeEspecialControllerAlterar**](doc/NecessidadeEspecialControllerApi.md#necessidadeespecialcontrolleralterar) | **PUT** /api/v1/necessidade_esp/{id} | 
 [*NecessidadeEspecialControllerApi*](doc/NecessidadeEspecialControllerApi.md) | [**necessidadeEspecialControllerIncluir**](doc/NecessidadeEspecialControllerApi.md#necessidadeespecialcontrollerincluir) | **POST** /api/v1/necessidade_esp | 
@@ -137,6 +146,7 @@ Class | Method | HTTP request | Description
 [*ResponsavelControllerApi*](doc/ResponsavelControllerApi.md) | [**responsavelControllerSearchFieldsAction**](doc/ResponsavelControllerApi.md#responsavelcontrollersearchfieldsaction) | **POST** /api/v1/responsavel/search-fields | 
 [*ResponsavelControllerApi*](doc/ResponsavelControllerApi.md) | [**responsavelControllerSearchFieldsActionPage**](doc/ResponsavelControllerApi.md#responsavelcontrollersearchfieldsactionpage) | **POST** /api/v1/responsavel/search-fields/page | 
 [*ResponsavelControllerApi*](doc/ResponsavelControllerApi.md) | [**responsavelControllerSearchFieldsList**](doc/ResponsavelControllerApi.md#responsavelcontrollersearchfieldslist) | **GET** /api/v1/responsavel/search-fields | 
+[*TurmaControllerApi*](doc/TurmaControllerApi.md) | [**turmaControllerAdicionaAlunos**](doc/TurmaControllerApi.md#turmacontrolleradicionaalunos) | **POST** /api/v1/turma/adicionaAlunos | 
 [*TurmaControllerApi*](doc/TurmaControllerApi.md) | [**turmaControllerAlterar**](doc/TurmaControllerApi.md#turmacontrolleralterar) | **PUT** /api/v1/turma/{id} | 
 [*TurmaControllerApi*](doc/TurmaControllerApi.md) | [**turmaControllerIncluir**](doc/TurmaControllerApi.md#turmacontrollerincluir) | **POST** /api/v1/turma | 
 [*TurmaControllerApi*](doc/TurmaControllerApi.md) | [**turmaControllerListAll**](doc/TurmaControllerApi.md#turmacontrollerlistall) | **GET** /api/v1/turma | 
@@ -181,9 +191,22 @@ Class | Method | HTTP request | Description
  - [ISearchFieldDataObject](doc/ISearchFieldDataObject.md)
  - [InformacoesMatriculaDTO](doc/InformacoesMatriculaDTO.md)
  - [MatriculaDTO](doc/MatriculaDTO.md)
+ - [MatriculaListagemDTO](doc/MatriculaListagemDTO.md)
+ - [MatriculaVisualizarDTO](doc/MatriculaVisualizarDTO.md)
  - [MessageResponse](doc/MessageResponse.md)
  - [NecessidadeEspecialDTO](doc/NecessidadeEspecialDTO.md)
+ - [PageAdvertenciaDTO](doc/PageAdvertenciaDTO.md)
+ - [PageEnderecoDTO](doc/PageEnderecoDTO.md)
+ - [PageInformacoesMatriculaDTO](doc/PageInformacoesMatriculaDTO.md)
+ - [PageMatriculaDTO](doc/PageMatriculaDTO.md)
+ - [PageNecessidadeEspecialDTO](doc/PageNecessidadeEspecialDTO.md)
+ - [PagePessoaDTO](doc/PagePessoaDTO.md)
+ - [PageResponsavelDTO](doc/PageResponsavelDTO.md)
+ - [PageTurmaDTO](doc/PageTurmaDTO.md)
+ - [PageTutorDTO](doc/PageTutorDTO.md)
+ - [PageUsuarioDTO](doc/PageUsuarioDTO.md)
  - [Pageable](doc/Pageable.md)
+ - [PageableObject](doc/PageableObject.md)
  - [PessoaDTO](doc/PessoaDTO.md)
  - [PkAdvertencia](doc/PkAdvertencia.md)
  - [PkResponsavel](doc/PkResponsavel.md)
@@ -191,6 +214,7 @@ Class | Method | HTTP request | Description
  - [ResponsavelDTO](doc/ResponsavelDTO.md)
  - [SearchField](doc/SearchField.md)
  - [SearchFieldValue](doc/SearchFieldValue.md)
+ - [SortObject](doc/SortObject.md)
  - [TurmaDTO](doc/TurmaDTO.md)
  - [TutorDTO](doc/TutorDTO.md)
  - [UsuarioDTO](doc/UsuarioDTO.md)

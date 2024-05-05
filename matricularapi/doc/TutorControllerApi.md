@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 
 # **tutorControllerAlterar**
-> tutorControllerAlterar(id, tutorDTO)
+> TutorDTO tutorControllerAlterar(id, tutorDTO)
 
 
 
@@ -36,7 +36,8 @@ final String id = id_example; // String |
 final TutorDTO tutorDTO = ; // TutorDTO | 
 
 try {
-    api.tutorControllerAlterar(id, tutorDTO);
+    final response = api.tutorControllerAlterar(id, tutorDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerAlterar: $e\n');
 }
@@ -51,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TutorDTO**](TutorDTO.md)
 
 ### Authorization
 
@@ -65,7 +66,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerIncluir**
-> tutorControllerIncluir(tutorDTO)
+> TutorDTO tutorControllerIncluir(tutorDTO)
 
 
 
@@ -79,7 +80,8 @@ final api = Matricular().getTutorControllerApi();
 final TutorDTO tutorDTO = ; // TutorDTO | 
 
 try {
-    api.tutorControllerIncluir(tutorDTO);
+    final response = api.tutorControllerIncluir(tutorDTO);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerIncluir: $e\n');
 }
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TutorDTO**](TutorDTO.md)
 
 ### Authorization
 
@@ -107,7 +109,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerListAll**
-> tutorControllerListAll()
+> BuiltList<TutorDTO> tutorControllerListAll()
 
 
 
@@ -120,7 +122,8 @@ import 'package:matricular/api.dart';
 final api = Matricular().getTutorControllerApi();
 
 try {
-    api.tutorControllerListAll();
+    final response = api.tutorControllerListAll();
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerListAll: $e\n');
 }
@@ -131,7 +134,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;TutorDTO&gt;**](TutorDTO.md)
 
 ### Authorization
 
@@ -145,7 +148,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerListAllPage**
-> tutorControllerListAllPage(page)
+> PageTutorDTO tutorControllerListAllPage(page)
 
 
 
@@ -159,7 +162,8 @@ final api = Matricular().getTutorControllerApi();
 final Pageable page = ; // Pageable | 
 
 try {
-    api.tutorControllerListAllPage(page);
+    final response = api.tutorControllerListAllPage(page);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerListAllPage: $e\n');
 }
@@ -173,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageTutorDTO**](PageTutorDTO.md)
 
 ### Authorization
 
@@ -187,7 +191,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerObterPorId**
-> tutorControllerObterPorId(id)
+> TutorDTO tutorControllerObterPorId(id)
 
 
 
@@ -201,7 +205,8 @@ final api = Matricular().getTutorControllerApi();
 final String id = id_example; // String | 
 
 try {
-    api.tutorControllerObterPorId(id);
+    final response = api.tutorControllerObterPorId(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerObterPorId: $e\n');
 }
@@ -215,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TutorDTO**](TutorDTO.md)
 
 ### Authorization
 
@@ -229,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerRemover**
-> tutorControllerRemover(id)
+> TutorDTO tutorControllerRemover(id)
 
 
 
@@ -243,7 +248,8 @@ final api = Matricular().getTutorControllerApi();
 final String id = id_example; // String | 
 
 try {
-    api.tutorControllerRemover(id);
+    final response = api.tutorControllerRemover(id);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerRemover: $e\n');
 }
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**TutorDTO**](TutorDTO.md)
 
 ### Authorization
 
@@ -271,7 +277,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerSearchFieldsAction**
-> tutorControllerSearchFieldsAction(searchFieldValue)
+> BuiltList<TutorDTO> tutorControllerSearchFieldsAction(searchFieldValue)
 
 
 
@@ -285,7 +291,8 @@ final api = Matricular().getTutorControllerApi();
 final BuiltList<SearchFieldValue> searchFieldValue = ; // BuiltList<SearchFieldValue> | 
 
 try {
-    api.tutorControllerSearchFieldsAction(searchFieldValue);
+    final response = api.tutorControllerSearchFieldsAction(searchFieldValue);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerSearchFieldsAction: $e\n');
 }
@@ -299,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**BuiltList&lt;TutorDTO&gt;**](TutorDTO.md)
 
 ### Authorization
 
@@ -313,7 +320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tutorControllerSearchFieldsActionPage**
-> tutorControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
+> PageTutorDTO tutorControllerSearchFieldsActionPage(searchFieldValue, page, size, sort)
 
 
 
@@ -330,7 +337,8 @@ final int size = 56; // int |
 final BuiltList<String> sort = ; // BuiltList<String> | 
 
 try {
-    api.tutorControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    final response = api.tutorControllerSearchFieldsActionPage(searchFieldValue, page, size, sort);
+    print(response);
 } catch on DioException (e) {
     print('Exception when calling TutorControllerApi->tutorControllerSearchFieldsActionPage: $e\n');
 }
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**PageTutorDTO**](PageTutorDTO.md)
 
 ### Authorization
 
