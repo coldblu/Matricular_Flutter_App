@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:matricular/matricular.dart';
+import 'package:matricular_app/app/api/AppAPI.dart';
+import 'package:matricular_app/app/utils/config_state.dart';
+import 'package:matricular_app/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
 
-import '../../routes.dart';
-import '../api/appAPI.dart';
-import '../utils/config_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -42,8 +42,11 @@ class _LoginPageState extends State<LoginPage> {
   late final isValid =
   computed(() => login().isNotEmpty && password().isNotEmpty);
   final passwordError = signal<String?>(null);
+
   late AppAPI appAPI;
   late Matricular matricularApi;
+
+
 
   void showMessage(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -102,6 +105,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     _LoginPageState();
+    appAPI = context.read<AppAPI>();
+    matricularApi = appAPI.api;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -139,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     onChanged: login.set,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), label: Text("email")),
+                        border: OutlineInputBorder(), label: Text("CPF")),
                   )),
               const Spacer(
                 flex: 1,
@@ -150,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                     onChanged: password.set,
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(),
-                        label: const Text("password"),
+                        label: const Text("Senha"),
                         errorText: passwordError.watch(context)),
                     enableSuggestions: false,
                     autocorrect: false,

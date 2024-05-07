@@ -3,9 +3,9 @@ import 'dart:core';
 
 import 'package:matricular/matricular.dart';
 import 'package:dio/dio.dart';
+import 'package:matricular_app/app/utils/config_state.dart';
 import 'package:signals/signals.dart';
 
-import '../utils/config_state.dart';
 
 class AppAPI{
   late final Matricular api;
@@ -16,7 +16,7 @@ class AppAPI{
     final matricularApi = Matricular(basePathOverride: config.url(),
         interceptors: [
           InterceptorsWrapper(onRequest: (options, handler) {
-            options.headers['Authorization'] = 'Bearer '+config.token();
+            options.headers['Authorization'] = 'Bearer ${config.token()}';
             return handler.next(options);
           })
         ]);

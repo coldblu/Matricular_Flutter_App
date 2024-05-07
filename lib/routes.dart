@@ -1,20 +1,29 @@
 import 'package:routefly/routefly.dart';
 
-import 'app/funcionarios/funcionario_page.dart' as a0;
-import 'app/home/home_page.dart' as a1;
-import 'app/login/login_page.dart' as a2;
-import 'app/prefers/prefers_page.dart' as a3;
-import 'app/turma/turma_page.dart' as a4;
+import 'app/funcionarios/funcionario_include_page.dart' as a0;
+import 'app/funcionarios/funcionario_page.dart' as a1;
+import 'app/home/home_page.dart' as a2;
+import 'app/login/login_page.dart' as a3;
+import 'app/prefers/prefers_page.dart' as a4;
 import 'app/turmas/turma_page.dart' as a5;
 
 List<RouteEntity> get routes => [
+  RouteEntity(
+    key: '/funcionarios/funcionario_include',
+    uri: Uri.parse('/funcionarios/funcionario_include'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a0.FuncionarioIncludePage(),
+    ),
+  ),
   RouteEntity(
     key: '/funcionarios/funcionario',
     uri: Uri.parse('/funcionarios/funcionario'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a0.FuncionarioPage(),
+      const a1.FuncionarioPage(),
     ),
   ),
   RouteEntity(
@@ -23,7 +32,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a1.HomePage(),
+      const a2.HomePage(),
     ),
   ),
   RouteEntity(
@@ -32,7 +41,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a2.LoginPage(),
+      const a3.LoginPage(),
     ),
   ),
   RouteEntity(
@@ -41,16 +50,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a3.PrefsPage(),
-    ),
-  ),
-  RouteEntity(
-    key: '/turma',
-    uri: Uri.parse('/turma'),
-    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
-      ctx,
-      settings,
-      a4.TurmaPage(),
+      const a4.PrefsPage(),
     ),
   ),
   RouteEntity(
@@ -68,12 +68,12 @@ const routePaths = (
   path: '/',
   funcionarios: (
     path: '/funcionarios',
+    funcionarioInclude: '/funcionarios/funcionario_include',
     funcionario: '/funcionarios/funcionario',
   ),
   home: '/home',
   login: '/login',
   prefers: '/prefers',
-  turma: '/turma',
   turmas: (
     path: '/turmas',
     turma: '/turmas/turma',

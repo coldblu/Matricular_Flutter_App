@@ -12,7 +12,7 @@ class ConfigState {
   bool disposeCtrl = false;
   ConfigState({required this.prefs}) {
     prefs.read(STORE_URL_KEY).then((value) {
-      url.set(value != '' ? value : 'http://192.168.100.1:8080');
+      url.set(value != '' ? value : 'http://192.168.3.107:8080');
     });
     prefs.read(STORE_TOKEY_KEY).then((value) {
       if(value!="") {

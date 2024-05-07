@@ -4,6 +4,9 @@ import 'package:matricular/matricular.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:matricular_app/app/api/AppAPI.dart';
+import 'package:matricular_app/app/utils/config_state.dart';
+import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
@@ -13,6 +16,19 @@ import '../../routes.dart';
 class TurmaPage extends StatefulWidget {
   const TurmaPage({super.key});
 
+  static Route<void> route() {
+    return MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => MultiProvider(
+          providers: [
+            Provider(create: (_) => context.read<ConfigState>(),
+              dispose: (_, instance) => instance.dispose() ,),
+            Provider(create: (_) => context.read<AppAPI>())
+          ],
+          child: const TurmaPage(),
+        )
+    );
+  }
 
   @override
   State<TurmaPage> createState() => _TurmaPageState();
@@ -38,31 +54,32 @@ class _TurmaPageState extends State<TurmaPage> {
     });
   }
 
-  Future<Response<BuiltList<TurmaDTO>>> _getData() async {
-    SharedPreferences pf = await SharedPreferences.getInstance();
-    url.set(pf.getString('URL') ?? 'http://192.168.10.100');
-
-    turmaApi = Matricular(basePathOverride: url(),interceptors: [
-
-    ]).getTurmaControllerApi();
-    var dado = await turmaApi?.turmaControllerListAll();
-    print(dado);
-    if (dado != null) {
+  Future<Response<BuiltList<TurmaDTO>>> _getData(TurmaControllerApi turmaApi) async {
+    try {
+      var dado = await turmaApi.turmaControllerListAll();
+      debugPrint("home-page:data:$dado");
       return dado;
+    } on DioException catch (e) {
+      debugPrint("Erro home:${e.response}");
+      return Future.value([] as FutureOr<Response<BuiltList<TurmaDTO>>>?);
     }
-    return Future.value([] as FutureOr<Response<BuiltList<TurmaDTO>>>?);
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("Build Home page student");
+    TurmaControllerApi? turmaApi = context.read<AppAPI>().api.getTurmaControllerApi();
+    debugPrint("Build Turma page");
     return Scaffold(
       body: FutureBuilder<Response<BuiltList<TurmaDTO>>>(
-          future: _getData(),
+          future: _getData(turmaApi),
           builder:
               (context, AsyncSnapshot<Response<BuiltList<TurmaDTO>>> snapshot) {
             return buildListView(snapshot);
           }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
@@ -90,7 +107,7 @@ class _TurmaPageState extends State<TurmaPage> {
                         title: Text("nome:${snapshot.data!.data?[index].titulo}",
                             style: const TextStyle(fontSize: 22.0)),
                         subtitle: Text(
-                            "curso:${snapshot.data!.data?[index].turno}",
+                            "turno:${snapshot.data!.data?[index].turno}",
                             style: const TextStyle(fontSize: 18.0)),
                       ),
                       ButtonBar(
@@ -112,6 +129,7 @@ class _TurmaPageState extends State<TurmaPage> {
                     ],
                   ),
                 ),
+
               ));
         },
       );
