@@ -67,7 +67,7 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
           }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Routefly.push(routePaths.funcionarios);
+          Routefly.pushNavigate(routePaths.funcionarios.funcionarioInclude);
         },
         child: const Icon(Icons.add),
       ),
