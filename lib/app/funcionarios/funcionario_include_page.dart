@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:matricular/matricular.dart';
 import 'package:matricular_app/app/api/AppAPI.dart';
+import 'package:matricular_app/app/funcionarios/cargoSelection.dart';
 import 'package:matricular_app/app/utils/config_state.dart';
 import 'package:matricular_app/routes.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +44,8 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
   var cargo;
   var pessoaTelefone;
   var senha;
+  String? _selectedCargo;
+  final List<String> _cargos = ['ADMIN', 'SECRETARIA', 'COORDENADORA'];
 
 
   late AppAPI appAPI;
@@ -61,7 +64,10 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
       var response = await this.usuarioApi.usuarioControllerIncluir(usuarioDTO: usuarioDTO.build());
       if(response.statusCode == 200){
         debugPrint("ok inserido");
-        Routefly.navigate(routePaths.home);
+        Routefly.navigate(
+            routePaths.home,
+            arguments: 1
+        );
       }else {
         message() {
           //showMessage(context, "Login Falhou: ${response.data}");
@@ -100,104 +106,110 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
       appBar: AppBar(
         title: Text('Cadastro de Funcionário'),
       ),
-      body: Form(
-        key: _formKey, // Associate the form key with this Form widget
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Nome'),
-                // Label for the name field
-                validator: (value) {
-                  // Validation function for the name field
-                  if (value!.isEmpty) {
-                    return 'Insira o nome.'; // Return an error message if the name is empty
-                  }
-                  return null; // Return null if the name is valid
-                },
-                onSaved: (value) {
-                  pessoaNome = value!; // Save the entered name
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'CPF'),
-                // Label for the email field
-                validator: (value) {
-                  // Validation function for the email field
-                  if (value!.isEmpty) {
-                    return 'Insira o CPF.'; // Return an error message if the email is empty
-                  }
-                  // You can add more complex validation logic here
-                  return null; // Return null if the email is valid
-                },
-                onSaved: (value) {
-                  pessoaCPF = value!; // Save the entered email
-                },
-              ),TextFormField(
-                decoration: InputDecoration(labelText: 'Email'),
-                // Label for the name field
-                validator: (value) {
-                  // Validation function for the name field
-                  if (value!.isEmpty) {
-                    return 'Insira o email.'; // Return an error message if the name is empty
-                  }
-                  return null; // Return null if the name is valid
-                },
-                onSaved: (value) {
-                  email = value!; // Save the entered name
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Cargo'),
-                // Label for the email field
-                validator: (value) {
-                  // Validation function for the email field
-                  if (value!.isEmpty) {
-                    return 'Insira o cargo.'; // Return an error message if the email is empty
-                  }
-                  // You can add more complex validation logic here
-                  return null; // Return null if the email is valid
-                },
-                onSaved: (value) {
-                  cargo = value!; // Save the entered email
-                },
-              ),TextFormField(
-                decoration: InputDecoration(labelText: 'Telefone'),
-                // Label for the name field
-                validator: (value) {
-                  // Validation function for the name field
-                  if (value!.isEmpty) {
-                    return 'Insira o telefone.'; // Return an error message if the name is empty
-                  }
-                  return null; // Return null if the name is valid
-                },
-                onSaved: (value) {
-                  pessoaTelefone = value!; // Save the entered name
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Senha'),
-                // Label for the email field
-                validator: (value) {
-                  // Validation function for the email field
-                  if (value!.isEmpty) {
-                    return 'Por favor, insira uma senha.'; // Return an error message if the email is empty
-                  }
-                  // You can add more complex validation logic here
-                  return null; // Return null if the email is valid
-                },
-                onSaved: (value) {
-                  senha = value!; // Save the entered email
-                },
-              ),
-              SizedBox(height: 20.0),
-              ElevatedButton(
-                onPressed: _submitForm,
-                // Call the _submitForm function when the button is pressed
-                child: Text('Cadastrar'), // Text on the button
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey, // Associate the form key with this Form widget
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Nome'),
+                  // Label for the name field
+                  validator: (value) {
+                    // Validation function for the name field
+                    if (value!.isEmpty) {
+                      return 'Insira o nome.'; // Return an error message if the name is empty
+                    }
+                    return null; // Return null if the name is valid
+                  },
+                  onSaved: (value) {
+                    pessoaNome = value!; // Save the entered name
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'CPF'),
+                  // Label for the email field
+                  validator: (value) {
+                    // Validation function for the email field
+                    if (value!.isEmpty) {
+                      return 'Insira o CPF.'; // Return an error message if the email is empty
+                    }
+                    // You can add more complex validation logic here
+                    return null; // Return null if the email is valid
+                  },
+                  onSaved: (value) {
+                    pessoaCPF = value!; // Save the entered email
+                  },
+                ),TextFormField(
+                  decoration: InputDecoration(labelText: 'Email'),
+                  // Label for the name field
+                  validator: (value) {
+                    // Validation function for the name field
+                    if (value!.isEmpty) {
+                      return 'Insira o email.'; // Return an error message if the name is empty
+                    }
+                    return null; // Return null if the name is valid
+                  },
+                  onSaved: (value) {
+                    email = value!; // Save the entered name
+                  },
+                ),
+                CargoSelection(
+                  onSaved: (value) => cargo = value, // Concise saving
+                ),
+                // TextFormField(
+                //   decoration: InputDecoration(labelText: 'Cargo'),
+                //   // Label for the email field
+                //   validator: (value) {
+                //     // Validation function for the email field
+                //     if (value!.isEmpty) {
+                //       return 'Insira o cargo.'; // Return an error message if the email is empty
+                //     }
+                //     // You can add more complex validation logic here
+                //     return null; // Return null if the email is valid
+                //   },
+                //   onSaved: (value) {
+                //     cargo = value!; // Save the entered email
+                //   },
+                // ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Telefone'),
+                  // Label for the name field
+                  validator: (value) {
+                    // Validation function for the name field
+                    if (value!.isEmpty) {
+                      return 'Insira o telefone.'; // Return an error message if the name is empty
+                    }
+                    return null; // Return null if the name is valid
+                  },
+                  onSaved: (value) {
+                    pessoaTelefone = value!; // Save the entered name
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Senha'),
+                  // Label for the email field
+                  validator: (value) {
+                    // Validation function for the email field
+                    if (value!.isEmpty) {
+                      return 'Por favor, insira uma senha.'; // Return an error message if the email is empty
+                    }
+                    // You can add more complex validation logic here
+                    return null; // Return null if the email is valid
+                  },
+                  onSaved: (value) {
+                    senha = value!; // Save the entered email
+                  },
+                ),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: _submitForm,
+                  // Call the _submitForm function when the button is pressed
+                  child: Text('Cadastrar'), // Text on the button
+                ),
+              ],
+            ),
           ),
         ),
       ),

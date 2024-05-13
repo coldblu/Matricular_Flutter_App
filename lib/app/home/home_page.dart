@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matricular_app/app/funcionarios/funcionario_page.dart';
 import 'package:matricular_app/app/home/pagina_teste.dart';
+import 'package:routefly/routefly.dart';
 
 import '../turmas/turma_page.dart';
 
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
     const FuncionarioPage(),
     const TurmaPage()
   ];
+
 
   void onTabTapped(int index) {
     setState(() {

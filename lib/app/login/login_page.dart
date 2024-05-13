@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
     //WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
     SchedulerBinding.instance.scheduleFrameCallback((timeStamp) async {
       final prefs = await SharedPreferences.getInstance();
-      url.set(prefs.getString('URL') ?? 'http://192.168.3.107:8080');
+      url.set(prefs.getString('URL') ?? 'http://192.168.3.109:8080');
     });
   }
 
@@ -77,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       passwordError.value = 'Erro! Mínimo de 6 caracteres';
     }
+    debugPrint("URL %ss${url()}");
 
     if(ok) {
       debugPrint("URL %ss${url()}");
