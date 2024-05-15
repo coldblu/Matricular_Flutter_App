@@ -61,33 +61,29 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
   Widget build(BuildContext context) {
     UsuarioControllerApi? usuarioApi = context.read<AppAPI>().api.getUsuarioControllerApi();
     debugPrint("Build Turma page");
-    _refreshData();
-    return Scaffold(
-      body: FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
-          future: _getData(usuarioApi),
-          builder:
-              (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
-            return buildListView(snapshot);
-          },/*
-            ListenableBuilder(
-              listenable: Routefly.listenable,
-              builder: () => _refreshData(),
-            ),*/
-          ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Routefly.pushNavigate(routePaths.funcionarios.funcionarioInclude);
-        },
-        child: const Icon(Icons.add),
-      ),
-      // ListenableBuilder(
-      //   builder: (BuildContext context, Widget? child) { // Use an underscore (_) for unused parameter
-      //     _refreshData(); // Call the function to trigger data refresh
-      //     return Text('Refreshing data...'); // Display a placeholder while data refreshes
-      //   },
-      //   listenable: Routefly.listenable,
-      // ),
-    );
+
+      return Scaffold(
+        body: FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
+            future: _getData(usuarioApi),
+            builder:
+                (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
+              return buildListView(snapshot);
+            },
+            ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Routefly.pushNavigate(routePaths.funcionarios.funcionarioInclude);
+          },
+          child: const Icon(Icons.add),
+        ),
+        // ListenableBuilder(
+        //   builder: (BuildContext context, Widget? child) { // Use an underscore (_) for unused parameter
+        //     _refreshData(); // Call the function to trigger data refresh
+        //     return Text('Refreshing data...'); // Display a placeholder while data refreshes
+        //   },
+        //   listenable: Routefly.listenable,
+        // ),
+      );
   }
 
   Widget buildListView(AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
