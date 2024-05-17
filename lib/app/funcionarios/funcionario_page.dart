@@ -65,7 +65,7 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
       return ListenableBuilder(
           listenable: Routefly.listenable,
           builder: (BuildContext context, Widget? child) {
-            debugPrint("teste");
+            debugPrint("testeListener");
             //     _refreshData(); // Call the function to trigger data refresh
             //     return Text('Refreshing data...'); // Display a placeholder while data refreshes
             //   },
