@@ -16,6 +16,10 @@ const ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnum_VIZINHO =
     const ResponsavelDTOVinculoEnum._('VIZINHO');
 const ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnum_AVO =
     const ResponsavelDTOVinculoEnum._('AVO');
+const ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnum_TIA =
+    const ResponsavelDTOVinculoEnum._('TIA');
+const ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnum_BISAVO =
+    const ResponsavelDTOVinculoEnum._('BISAVO');
 
 ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnumValueOf(String name) {
   switch (name) {
@@ -29,8 +33,12 @@ ResponsavelDTOVinculoEnum _$responsavelDTOVinculoEnumValueOf(String name) {
       return _$responsavelDTOVinculoEnum_VIZINHO;
     case 'AVO':
       return _$responsavelDTOVinculoEnum_AVO;
+    case 'TIA':
+      return _$responsavelDTOVinculoEnum_TIA;
+    case 'BISAVO':
+      return _$responsavelDTOVinculoEnum_BISAVO;
     default:
-      return _$responsavelDTOVinculoEnum_AVO;
+      return _$responsavelDTOVinculoEnum_BISAVO;
   }
 }
 
@@ -41,6 +49,8 @@ final BuiltSet<ResponsavelDTOVinculoEnum> _$responsavelDTOVinculoEnumValues =
   _$responsavelDTOVinculoEnum_TIO,
   _$responsavelDTOVinculoEnum_VIZINHO,
   _$responsavelDTOVinculoEnum_AVO,
+  _$responsavelDTOVinculoEnum_TIA,
+  _$responsavelDTOVinculoEnum_BISAVO,
 ]);
 
 Serializer<ResponsavelDTOVinculoEnum> _$responsavelDTOVinculoEnumSerializer =
@@ -54,6 +64,8 @@ class _$ResponsavelDTOVinculoEnumSerializer
     'TIO': 'TIO',
     'VIZINHO': 'VIZINHO',
     'AVO': 'AVO',
+    'TIA': 'TIA',
+    'BISAVO': 'BISAVO',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'PAI': 'PAI',
@@ -61,6 +73,8 @@ class _$ResponsavelDTOVinculoEnumSerializer
     'TIO': 'TIO',
     'VIZINHO': 'VIZINHO',
     'AVO': 'AVO',
+    'TIA': 'TIA',
+    'BISAVO': 'BISAVO',
   };
 
   @override

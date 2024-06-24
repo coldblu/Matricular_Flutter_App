@@ -23,6 +23,10 @@ class _$MatriculaVisualizarDTO extends MatriculaVisualizarDTO {
   final BuiltList<String>? responsaveisNome;
   @override
   final String? caminhoImagem;
+  @override
+  final BuiltList<NecessidadeEspecialDTO>? necessidades;
+  @override
+  final BuiltList<AdvertenciaDTO>? advertencias;
 
   factory _$MatriculaVisualizarDTO(
           [void Function(MatriculaVisualizarDTOBuilder)? updates]) =>
@@ -36,7 +40,9 @@ class _$MatriculaVisualizarDTO extends MatriculaVisualizarDTO {
       this.tutoresNomes,
       this.tutoresTelefone,
       this.responsaveisNome,
-      this.caminhoImagem})
+      this.caminhoImagem,
+      this.necessidades,
+      this.advertencias})
       : super._();
 
   @override
@@ -59,7 +65,9 @@ class _$MatriculaVisualizarDTO extends MatriculaVisualizarDTO {
         tutoresNomes == other.tutoresNomes &&
         tutoresTelefone == other.tutoresTelefone &&
         responsaveisNome == other.responsaveisNome &&
-        caminhoImagem == other.caminhoImagem;
+        caminhoImagem == other.caminhoImagem &&
+        necessidades == other.necessidades &&
+        advertencias == other.advertencias;
   }
 
   @override
@@ -73,6 +81,8 @@ class _$MatriculaVisualizarDTO extends MatriculaVisualizarDTO {
     _$hash = $jc(_$hash, tutoresTelefone.hashCode);
     _$hash = $jc(_$hash, responsaveisNome.hashCode);
     _$hash = $jc(_$hash, caminhoImagem.hashCode);
+    _$hash = $jc(_$hash, necessidades.hashCode);
+    _$hash = $jc(_$hash, advertencias.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -87,7 +97,9 @@ class _$MatriculaVisualizarDTO extends MatriculaVisualizarDTO {
           ..add('tutoresNomes', tutoresNomes)
           ..add('tutoresTelefone', tutoresTelefone)
           ..add('responsaveisNome', responsaveisNome)
-          ..add('caminhoImagem', caminhoImagem))
+          ..add('caminhoImagem', caminhoImagem)
+          ..add('necessidades', necessidades)
+          ..add('advertencias', advertencias))
         .toString();
   }
 }
@@ -135,6 +147,18 @@ class MatriculaVisualizarDTOBuilder
   set caminhoImagem(String? caminhoImagem) =>
       _$this._caminhoImagem = caminhoImagem;
 
+  ListBuilder<NecessidadeEspecialDTO>? _necessidades;
+  ListBuilder<NecessidadeEspecialDTO> get necessidades =>
+      _$this._necessidades ??= new ListBuilder<NecessidadeEspecialDTO>();
+  set necessidades(ListBuilder<NecessidadeEspecialDTO>? necessidades) =>
+      _$this._necessidades = necessidades;
+
+  ListBuilder<AdvertenciaDTO>? _advertencias;
+  ListBuilder<AdvertenciaDTO> get advertencias =>
+      _$this._advertencias ??= new ListBuilder<AdvertenciaDTO>();
+  set advertencias(ListBuilder<AdvertenciaDTO>? advertencias) =>
+      _$this._advertencias = advertencias;
+
   MatriculaVisualizarDTOBuilder() {
     MatriculaVisualizarDTO._defaults(this);
   }
@@ -150,6 +174,8 @@ class MatriculaVisualizarDTOBuilder
       _tutoresTelefone = $v.tutoresTelefone?.toBuilder();
       _responsaveisNome = $v.responsaveisNome?.toBuilder();
       _caminhoImagem = $v.caminhoImagem;
+      _necessidades = $v.necessidades?.toBuilder();
+      _advertencias = $v.advertencias?.toBuilder();
       _$v = null;
     }
     return this;
@@ -181,7 +207,9 @@ class MatriculaVisualizarDTOBuilder
               tutoresNomes: _tutoresNomes?.build(),
               tutoresTelefone: _tutoresTelefone?.build(),
               responsaveisNome: _responsaveisNome?.build(),
-              caminhoImagem: caminhoImagem);
+              caminhoImagem: caminhoImagem,
+              necessidades: _necessidades?.build(),
+              advertencias: _advertencias?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -191,6 +219,11 @@ class MatriculaVisualizarDTOBuilder
         _tutoresTelefone?.build();
         _$failedField = 'responsaveisNome';
         _responsaveisNome?.build();
+
+        _$failedField = 'necessidades';
+        _necessidades?.build();
+        _$failedField = 'advertencias';
+        _advertencias?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'MatriculaVisualizarDTO', _$failedField, e.toString());

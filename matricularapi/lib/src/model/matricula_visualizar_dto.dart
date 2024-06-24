@@ -5,6 +5,8 @@
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/model/date.dart';
+import 'package:matricular/src/model/necessidade_especial_dto.dart';
+import 'package:matricular/src/model/advertencia_dto.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -21,6 +23,8 @@ part 'matricula_visualizar_dto.g.dart';
 /// * [tutoresTelefone]
 /// * [responsaveisNome]
 /// * [caminhoImagem]
+/// * [necessidades]
+/// * [advertencias]
 @BuiltValue()
 abstract class MatriculaVisualizarDTO
     implements Built<MatriculaVisualizarDTO, MatriculaVisualizarDTOBuilder> {
@@ -47,6 +51,12 @@ abstract class MatriculaVisualizarDTO
 
   @BuiltValueField(wireName: r'caminhoImagem')
   String? get caminhoImagem;
+
+  @BuiltValueField(wireName: r'necessidades')
+  BuiltList<NecessidadeEspecialDTO>? get necessidades;
+
+  @BuiltValueField(wireName: r'advertencias')
+  BuiltList<AdvertenciaDTO>? get advertencias;
 
   MatriculaVisualizarDTO._();
 
@@ -134,6 +144,21 @@ class _$MatriculaVisualizarDTOSerializer
         specifiedType: const FullType(String),
       );
     }
+    if (object.necessidades != null) {
+      yield r'necessidades';
+      yield serializers.serialize(
+        object.necessidades,
+        specifiedType:
+            const FullType(BuiltList, [FullType(NecessidadeEspecialDTO)]),
+      );
+    }
+    if (object.advertencias != null) {
+      yield r'advertencias';
+      yield serializers.serialize(
+        object.advertencias,
+        specifiedType: const FullType(BuiltList, [FullType(AdvertenciaDTO)]),
+      );
+    }
   }
 
   @override
@@ -214,6 +239,22 @@ class _$MatriculaVisualizarDTOSerializer
             specifiedType: const FullType(String),
           ) as String;
           result.caminhoImagem = valueDes;
+          break;
+        case r'necessidades':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType:
+                const FullType(BuiltList, [FullType(NecessidadeEspecialDTO)]),
+          ) as BuiltList<NecessidadeEspecialDTO>;
+          result.necessidades.replace(valueDes);
+          break;
+        case r'advertencias':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType:
+                const FullType(BuiltList, [FullType(AdvertenciaDTO)]),
+          ) as BuiltList<AdvertenciaDTO>;
+          result.advertencias.replace(valueDes);
           break;
         default:
           unhandled.add(key);

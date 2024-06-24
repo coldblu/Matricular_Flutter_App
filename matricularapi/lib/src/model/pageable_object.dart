@@ -16,8 +16,8 @@ part 'pageable_object.g.dart';
 /// * [sort]
 /// * [pageNumber]
 /// * [pageSize]
-/// * [unpaged]
 /// * [paged]
+/// * [unpaged]
 @BuiltValue()
 abstract class PageableObject
     implements Built<PageableObject, PageableObjectBuilder> {
@@ -33,11 +33,11 @@ abstract class PageableObject
   @BuiltValueField(wireName: r'pageSize')
   int? get pageSize;
 
-  @BuiltValueField(wireName: r'unpaged')
-  bool? get unpaged;
-
   @BuiltValueField(wireName: r'paged')
   bool? get paged;
+
+  @BuiltValueField(wireName: r'unpaged')
+  bool? get unpaged;
 
   PageableObject._();
 
@@ -93,17 +93,17 @@ class _$PageableObjectSerializer
         specifiedType: const FullType(int),
       );
     }
-    if (object.unpaged != null) {
-      yield r'unpaged';
-      yield serializers.serialize(
-        object.unpaged,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.paged != null) {
       yield r'paged';
       yield serializers.serialize(
         object.paged,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.unpaged != null) {
+      yield r'unpaged';
+      yield serializers.serialize(
+        object.unpaged,
         specifiedType: const FullType(bool),
       );
     }
@@ -160,19 +160,19 @@ class _$PageableObjectSerializer
           ) as int;
           result.pageSize = valueDes;
           break;
-        case r'unpaged':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.unpaged = valueDes;
-          break;
         case r'paged':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.paged = valueDes;
+          break;
+        case r'unpaged':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.unpaged = valueDes;
           break;
         default:
           unhandled.add(key);

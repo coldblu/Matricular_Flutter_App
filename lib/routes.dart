@@ -1,11 +1,12 @@
 import 'package:routefly/routefly.dart';
 
+import 'app/funcionarios/[id]_page.dart' as a2;
 import 'app/funcionarios/funcionario_include_page.dart' as a0;
 import 'app/funcionarios/funcionario_page.dart' as a1;
-import 'app/home/home_page.dart' as a2;
-import 'app/login/login_page.dart' as a3;
-import 'app/prefers/prefers_page.dart' as a4;
-import 'app/turmas/turma_page.dart' as a5;
+import 'app/home/home_page.dart' as a3;
+import 'app/login/login_page.dart' as a4;
+import 'app/prefers/prefers_page.dart' as a5;
+import 'app/turmas/turma_page.dart' as a6;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -27,12 +28,21 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
+    key: '/funcionarios/[id]',
+    uri: Uri.parse('/funcionarios/[id]'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a2.FuncionarioEditPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/home',
     uri: Uri.parse('/home'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a2.HomePage(),
+      const a3.HomePage(),
     ),
   ),
   RouteEntity(
@@ -41,7 +51,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a3.LoginPage(),
+      const a4.LoginPage(),
     ),
   ),
   RouteEntity(
@@ -50,7 +60,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a4.PrefsPage(),
+      const a5.PrefsPage(),
     ),
   ),
   RouteEntity(
@@ -59,7 +69,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a5.TurmaPage(),
+      const a6.TurmaPage(),
     ),
   ),
 ];
@@ -70,6 +80,7 @@ const routePaths = (
     path: '/funcionarios',
     funcionarioInclude: '/funcionarios/funcionario_include',
     funcionario: '/funcionarios/funcionario',
+    $id: '/funcionarios/[id]',
   ),
   home: '/home',
   login: '/login',

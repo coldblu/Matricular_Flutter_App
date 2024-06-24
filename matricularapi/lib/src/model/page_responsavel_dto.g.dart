@@ -8,9 +8,9 @@ part of 'page_responsavel_dto.dart';
 
 class _$PageResponsavelDTO extends PageResponsavelDTO {
   @override
-  final int? totalPages;
-  @override
   final int? totalElements;
+  @override
+  final int? totalPages;
   @override
   final int? size;
   @override
@@ -35,8 +35,8 @@ class _$PageResponsavelDTO extends PageResponsavelDTO {
       (new PageResponsavelDTOBuilder()..update(updates))._build();
 
   _$PageResponsavelDTO._(
-      {this.totalPages,
-      this.totalElements,
+      {this.totalElements,
+      this.totalPages,
       this.size,
       this.content,
       this.number,
@@ -61,8 +61,8 @@ class _$PageResponsavelDTO extends PageResponsavelDTO {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PageResponsavelDTO &&
-        totalPages == other.totalPages &&
         totalElements == other.totalElements &&
+        totalPages == other.totalPages &&
         size == other.size &&
         content == other.content &&
         number == other.number &&
@@ -77,8 +77,8 @@ class _$PageResponsavelDTO extends PageResponsavelDTO {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, totalPages.hashCode);
     _$hash = $jc(_$hash, totalElements.hashCode);
+    _$hash = $jc(_$hash, totalPages.hashCode);
     _$hash = $jc(_$hash, size.hashCode);
     _$hash = $jc(_$hash, content.hashCode);
     _$hash = $jc(_$hash, number.hashCode);
@@ -95,8 +95,8 @@ class _$PageResponsavelDTO extends PageResponsavelDTO {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PageResponsavelDTO')
-          ..add('totalPages', totalPages)
           ..add('totalElements', totalElements)
+          ..add('totalPages', totalPages)
           ..add('size', size)
           ..add('content', content)
           ..add('number', number)
@@ -114,14 +114,14 @@ class PageResponsavelDTOBuilder
     implements Builder<PageResponsavelDTO, PageResponsavelDTOBuilder> {
   _$PageResponsavelDTO? _$v;
 
-  int? _totalPages;
-  int? get totalPages => _$this._totalPages;
-  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
-
   int? _totalElements;
   int? get totalElements => _$this._totalElements;
   set totalElements(int? totalElements) =>
       _$this._totalElements = totalElements;
+
+  int? _totalPages;
+  int? get totalPages => _$this._totalPages;
+  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
 
   int? _size;
   int? get size => _$this._size;
@@ -170,8 +170,8 @@ class PageResponsavelDTOBuilder
   PageResponsavelDTOBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _totalPages = $v.totalPages;
       _totalElements = $v.totalElements;
+      _totalPages = $v.totalPages;
       _size = $v.size;
       _content = $v.content?.toBuilder();
       _number = $v.number;
@@ -205,8 +205,8 @@ class PageResponsavelDTOBuilder
     try {
       _$result = _$v ??
           new _$PageResponsavelDTO._(
-              totalPages: totalPages,
               totalElements: totalElements,
+              totalPages: totalPages,
               size: size,
               content: _content?.build(),
               number: number,

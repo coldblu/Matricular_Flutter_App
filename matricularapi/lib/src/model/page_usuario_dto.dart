@@ -15,8 +15,8 @@ part 'page_usuario_dto.g.dart';
 /// PageUsuarioDTO
 ///
 /// Properties:
-/// * [totalPages]
 /// * [totalElements]
+/// * [totalPages]
 /// * [size]
 /// * [content]
 /// * [number]
@@ -29,11 +29,11 @@ part 'page_usuario_dto.g.dart';
 @BuiltValue()
 abstract class PageUsuarioDTO
     implements Built<PageUsuarioDTO, PageUsuarioDTOBuilder> {
-  @BuiltValueField(wireName: r'totalPages')
-  int? get totalPages;
-
   @BuiltValueField(wireName: r'totalElements')
   int? get totalElements;
+
+  @BuiltValueField(wireName: r'totalPages')
+  int? get totalPages;
 
   @BuiltValueField(wireName: r'size')
   int? get size;
@@ -88,17 +88,17 @@ class _$PageUsuarioDTOSerializer
     PageUsuarioDTO object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.totalPages != null) {
-      yield r'totalPages';
-      yield serializers.serialize(
-        object.totalPages,
-        specifiedType: const FullType(int),
-      );
-    }
     if (object.totalElements != null) {
       yield r'totalElements';
       yield serializers.serialize(
         object.totalElements,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.totalPages != null) {
+      yield r'totalPages';
+      yield serializers.serialize(
+        object.totalPages,
         specifiedType: const FullType(int),
       );
     }
@@ -190,19 +190,19 @@ class _$PageUsuarioDTOSerializer
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'totalPages':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.totalPages = valueDes;
-          break;
         case r'totalElements':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(int),
           ) as int;
           result.totalElements = valueDes;
+          break;
+        case r'totalPages':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.totalPages = valueDes;
           break;
         case r'size':
           final valueDes = serializers.deserialize(

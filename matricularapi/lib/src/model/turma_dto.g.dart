@@ -10,8 +10,8 @@ const TurmaDTOTurnoEnum _$turmaDTOTurnoEnum_MATUTINO =
     const TurmaDTOTurnoEnum._('MATUTINO');
 const TurmaDTOTurnoEnum _$turmaDTOTurnoEnum_VESPERTINO =
     const TurmaDTOTurnoEnum._('VESPERTINO');
-const TurmaDTOTurnoEnum _$turmaDTOTurnoEnum_NOTURNO =
-    const TurmaDTOTurnoEnum._('NOTURNO');
+const TurmaDTOTurnoEnum _$turmaDTOTurnoEnum_INTEGRAL =
+    const TurmaDTOTurnoEnum._('INTEGRAL');
 
 TurmaDTOTurnoEnum _$turmaDTOTurnoEnumValueOf(String name) {
   switch (name) {
@@ -19,10 +19,10 @@ TurmaDTOTurnoEnum _$turmaDTOTurnoEnumValueOf(String name) {
       return _$turmaDTOTurnoEnum_MATUTINO;
     case 'VESPERTINO':
       return _$turmaDTOTurnoEnum_VESPERTINO;
-    case 'NOTURNO':
-      return _$turmaDTOTurnoEnum_NOTURNO;
+    case 'INTEGRAL':
+      return _$turmaDTOTurnoEnum_INTEGRAL;
     default:
-      return _$turmaDTOTurnoEnum_NOTURNO;
+      return _$turmaDTOTurnoEnum_INTEGRAL;
   }
 }
 
@@ -30,7 +30,7 @@ final BuiltSet<TurmaDTOTurnoEnum> _$turmaDTOTurnoEnumValues =
     new BuiltSet<TurmaDTOTurnoEnum>(const <TurmaDTOTurnoEnum>[
   _$turmaDTOTurnoEnum_MATUTINO,
   _$turmaDTOTurnoEnum_VESPERTINO,
-  _$turmaDTOTurnoEnum_NOTURNO,
+  _$turmaDTOTurnoEnum_INTEGRAL,
 ]);
 
 Serializer<TurmaDTOTurnoEnum> _$turmaDTOTurnoEnumSerializer =
@@ -41,12 +41,12 @@ class _$TurmaDTOTurnoEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'MATUTINO': 'MATUTINO',
     'VESPERTINO': 'VESPERTINO',
-    'NOTURNO': 'NOTURNO',
+    'INTEGRAL': 'INTEGRAL',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'MATUTINO': 'MATUTINO',
     'VESPERTINO': 'VESPERTINO',
-    'NOTURNO': 'NOTURNO',
+    'INTEGRAL': 'INTEGRAL',
   };
 
   @override

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CargoSelection extends StatefulWidget {
   final Function(String) onSaved;
-
-  const CargoSelection({Key? key, required this.onSaved}) : super(key: key);
+  final String? cargoInicial; // Adicione o parâmetro inicial
+  const CargoSelection({Key? key, required this.onSaved, this.cargoInicial}) : super(key: key);
 
   @override
   State<CargoSelection> createState() => _CargoSelectionState();
@@ -12,6 +12,12 @@ class CargoSelection extends StatefulWidget {
 class _CargoSelectionState extends State<CargoSelection> {
   String? _selectedCargo;
   final List<String> _cargos = ['ADMIN', 'SECRETARIA', 'COORDENADORA'];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCargo = widget.cargoInicial; // Use o valor inicial
+  }
 
   @override
   Widget build(BuildContext context) {

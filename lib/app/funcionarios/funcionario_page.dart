@@ -10,6 +10,7 @@ import 'package:matricular_app/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:signals/signals.dart';
+import 'package:signals/signals_flutter.dart';
 
 class FuncionarioPage extends StatefulWidget {
   const FuncionarioPage({super.key});
@@ -34,6 +35,7 @@ class FuncionarioPage extends StatefulWidget {
 
 class _FuncionarioPageState extends State<FuncionarioPage> {
   final url = signal('');
+  final refresh = signal('');
   TurmaControllerApi? turmaApi;
 
   @override
@@ -42,11 +44,8 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
     super.initState();
   }
 
-  Future<void> _refreshData() async {
-    setState(() {}); // Força o rebuild da página para recarregar os dados
-  }
 
-  Future<Response<BuiltList<UsuarioDTO>>> _getData(UsuarioControllerApi usuarioApi) async {
+  Future<Response<BuiltList<UsuarioDTO>>> _getData(UsuarioControllerApi usuarioApi, String refresh) async {
     try {
       var dado = await usuarioApi.usuarioControllerListAll();
       debugPrint("home-page:data:$dado");
@@ -57,6 +56,19 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
     }
   }
 
+  void _excluirFuncionario(int? id) async {
+    try{
+      UsuarioControllerApi? usuarioApi = context.read<AppAPI>().api.getUsuarioControllerApi();
+      int idFuncionario = id!;
+      var retornoExcluido = await usuarioApi.usuarioControllerRemover(id: idFuncionario);
+      debugPrint("Excluido: ${retornoExcluido.data}");
+      refresh.set("value");
+    }on DioException catch (e) {
+      debugPrint("Erro home:${e.response}");
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     UsuarioControllerApi? usuarioApi = context.read<AppAPI>().api.getUsuarioControllerApi();
@@ -65,13 +77,10 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
       return ListenableBuilder(
           listenable: Routefly.listenable,
           builder: (BuildContext context, Widget? child) {
-            debugPrint("testeListener");
-            //     _refreshData(); // Call the function to trigger data refresh
-            //     return Text('Refreshing data...'); // Display a placeholder while data refreshes
-            //   },
+            //debugPrint("testeListener");
             return Scaffold(
               body: FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
-                future: _getData(usuarioApi),
+                future: _getData(usuarioApi, refresh.watch(context)),
                 builder:
                     (context,
                     AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
@@ -122,13 +131,34 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
                           ElevatedButton(
                             child: const Text('Editar'),
                             onPressed: () {
-                              /* ... */
+                              Routefly.pushNavigate('${routePaths.funcionarios.path}/${snapshot.data!.data?[index].id}' );
                             },
                           ),
                           ElevatedButton(
                             child: const Text('Excluir'),
                             onPressed: () {
-                              /* ... */
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('TEstes'),
+                                    content: Text(
+                                      'Deseja excluir : ${snapshot.data!.data?[index].pessoaNome}?'
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () => Navigator.pop(context),
+                                          child: Text('Cancelar')
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            _excluirFuncionario(snapshot.data!.data?[index].id);
+                                            Navigator.pop(context);
+                                            },
+                                          child: Text('Excluir')
+                                      )
+                                    ],
+                                  )
+                              );
                             },
                           ),
                         ],
@@ -177,4 +207,6 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
     print("didChangeDependencies");
     super.didChangeDependencies();
   }
+
+
 }

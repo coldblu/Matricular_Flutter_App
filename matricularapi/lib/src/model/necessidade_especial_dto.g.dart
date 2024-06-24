@@ -10,15 +10,15 @@ class _$NecessidadeEspecialDTO extends NecessidadeEspecialDTO {
   @override
   final int? id;
   @override
-  final String? titulo;
+  final int? matriculaId;
   @override
-  final String? observacoes;
+  final String? titulo;
 
   factory _$NecessidadeEspecialDTO(
           [void Function(NecessidadeEspecialDTOBuilder)? updates]) =>
       (new NecessidadeEspecialDTOBuilder()..update(updates))._build();
 
-  _$NecessidadeEspecialDTO._({this.id, this.titulo, this.observacoes})
+  _$NecessidadeEspecialDTO._({this.id, this.matriculaId, this.titulo})
       : super._();
 
   @override
@@ -35,16 +35,16 @@ class _$NecessidadeEspecialDTO extends NecessidadeEspecialDTO {
     if (identical(other, this)) return true;
     return other is NecessidadeEspecialDTO &&
         id == other.id &&
-        titulo == other.titulo &&
-        observacoes == other.observacoes;
+        matriculaId == other.matriculaId &&
+        titulo == other.titulo;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, matriculaId.hashCode);
     _$hash = $jc(_$hash, titulo.hashCode);
-    _$hash = $jc(_$hash, observacoes.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53,8 +53,8 @@ class _$NecessidadeEspecialDTO extends NecessidadeEspecialDTO {
   String toString() {
     return (newBuiltValueToStringHelper(r'NecessidadeEspecialDTO')
           ..add('id', id)
-          ..add('titulo', titulo)
-          ..add('observacoes', observacoes))
+          ..add('matriculaId', matriculaId)
+          ..add('titulo', titulo))
         .toString();
   }
 }
@@ -67,13 +67,13 @@ class NecessidadeEspecialDTOBuilder
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
 
+  int? _matriculaId;
+  int? get matriculaId => _$this._matriculaId;
+  set matriculaId(int? matriculaId) => _$this._matriculaId = matriculaId;
+
   String? _titulo;
   String? get titulo => _$this._titulo;
   set titulo(String? titulo) => _$this._titulo = titulo;
-
-  String? _observacoes;
-  String? get observacoes => _$this._observacoes;
-  set observacoes(String? observacoes) => _$this._observacoes = observacoes;
 
   NecessidadeEspecialDTOBuilder() {
     NecessidadeEspecialDTO._defaults(this);
@@ -83,8 +83,8 @@ class NecessidadeEspecialDTOBuilder
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
+      _matriculaId = $v.matriculaId;
       _titulo = $v.titulo;
-      _observacoes = $v.observacoes;
       _$v = null;
     }
     return this;
@@ -107,7 +107,7 @@ class NecessidadeEspecialDTOBuilder
   _$NecessidadeEspecialDTO _build() {
     final _$result = _$v ??
         new _$NecessidadeEspecialDTO._(
-            id: id, titulo: titulo, observacoes: observacoes);
+            id: id, matriculaId: matriculaId, titulo: titulo);
     replace(_$result);
     return _$result;
   }

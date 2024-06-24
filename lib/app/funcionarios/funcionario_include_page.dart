@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:matricular/matricular.dart';
 import 'package:matricular_app/app/api/AppAPI.dart';
 import 'package:matricular_app/app/funcionarios/cargoSelection.dart';
@@ -12,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:signals/signals.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
 class FuncionarioIncludePage extends StatefulWidget {
   const FuncionarioIncludePage({super.key});
@@ -102,6 +104,7 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
     appAPI = context.read<AppAPI>();
     usuarioApi = appAPI.api.getUsuarioControllerApi();
 
+    bool _showPassword = false;
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro de Funcionário'),
@@ -114,12 +117,14 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Nome'),
+                  decoration: InputDecoration(labelText: 'Nome completo'),
                   // Label for the name field
                   validator: (value) {
                     // Validation function for the name field
                     if (value!.isEmpty) {
                       return 'Insira o nome.'; // Return an error message if the name is empty
+                    } else if (value.length < 10) {
+                      return 'O nome deve ter pelo menos 10 caracteres.'; // Return error if less than 6 chars
                     }
                     return null; // Return null if the name is valid
                   },
@@ -129,11 +134,19 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'CPF'),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    // Use a package like 'brasil_inputs' for CPF mask
+                    FilteringTextInputFormatter.digitsOnly,
+                    CpfInputFormatter()
+                  ],
                   // Label for the email field
                   validator: (value) {
                     // Validation function for the email field
                     if (value!.isEmpty) {
                       return 'Insira o CPF.'; // Return an error message if the email is empty
+                    } else if (value.length < 11) {
+                      return 'O CPF deve ter pelo menos 11 dígitos.'; // Return error if less than 11 digits
                     }
                     // You can add more complex validation logic here
                     return null; // Return null if the email is valid
@@ -143,6 +156,7 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
                   },
                 ),TextFormField(
                   decoration: InputDecoration(labelText: 'Email'),
+                  keyboardType: TextInputType.emailAddress,
                   // Label for the name field
                   validator: (value) {
                     // Validation function for the name field
@@ -158,23 +172,14 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
                 CargoSelection(
                   onSaved: (value) => cargo = value, // Concise saving
                 ),
-                // TextFormField(
-                //   decoration: InputDecoration(labelText: 'Cargo'),
-                //   // Label for the email field
-                //   validator: (value) {
-                //     // Validation function for the email field
-                //     if (value!.isEmpty) {
-                //       return 'Insira o cargo.'; // Return an error message if the email is empty
-                //     }
-                //     // You can add more complex validation logic here
-                //     return null; // Return null if the email is valid
-                //   },
-                //   onSaved: (value) {
-                //     cargo = value!; // Save the entered email
-                //   },
-                // ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Telefone'),
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    // Use a package like 'brasil_inputs' for phone mask
+                    FilteringTextInputFormatter.digitsOnly,
+                    TelefoneInputFormatter(),
+                  ],
                   // Label for the name field
                   validator: (value) {
                     // Validation function for the name field
@@ -188,21 +193,52 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
                   },
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Senha'),
+                  decoration: InputDecoration(labelText: 'Senha', suffixIcon: IconButton(
+                    icon: Icon(
+                      // Use an icon to toggle password visibility
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () => setState(() => _showPassword = !_showPassword),
+                  )),
+                  // Label for the password field with visibility toggle
+                  obscureText: !_showPassword,
                   // Label for the email field
                   validator: (value) {
                     // Validation function for the email field
                     if (value!.isEmpty) {
                       return 'Por favor, insira uma senha.'; // Return an error message if the email is empty
+                    }else if (value.length < 6) {
+                      return 'A senha deve ter pelo menos 6 digitos.'; // Return error if less than 6 chars
                     }
                     // You can add more complex validation logic here
                     return null; // Return null if the email is valid
                   },
+                  onChanged: (value) => setState(() => senha = value!),
                   onSaved: (value) {
                     senha = value!; // Save the entered email
                   },
                 ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Confirmar Senha'),
+                  // Label for the confirm password field
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Por favor, confirme a senha.'; // Return error if confirmation is empty
+                    }else if (value.length < 6) {
+                      return 'A senha deve ter pelo menos 6 digitos.'; // Return error if less than 6 chars
+                    }
+                    if (value != senha) {
+                      return 'As senhas não coincidem.'; // Return error if passwords don't match
+                    }
+                    return null; // Return null if confirmation is valid
+                  },
+                ),
                 SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Cancelar'),
+                ),
                 ElevatedButton(
                   onPressed: _submitForm,
                   // Call the _submitForm function when the button is pressed

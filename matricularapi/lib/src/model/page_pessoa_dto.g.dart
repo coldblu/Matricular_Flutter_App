@@ -8,9 +8,9 @@ part of 'page_pessoa_dto.dart';
 
 class _$PagePessoaDTO extends PagePessoaDTO {
   @override
-  final int? totalPages;
-  @override
   final int? totalElements;
+  @override
+  final int? totalPages;
   @override
   final int? size;
   @override
@@ -34,8 +34,8 @@ class _$PagePessoaDTO extends PagePessoaDTO {
       (new PagePessoaDTOBuilder()..update(updates))._build();
 
   _$PagePessoaDTO._(
-      {this.totalPages,
-      this.totalElements,
+      {this.totalElements,
+      this.totalPages,
       this.size,
       this.content,
       this.number,
@@ -58,8 +58,8 @@ class _$PagePessoaDTO extends PagePessoaDTO {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PagePessoaDTO &&
-        totalPages == other.totalPages &&
         totalElements == other.totalElements &&
+        totalPages == other.totalPages &&
         size == other.size &&
         content == other.content &&
         number == other.number &&
@@ -74,8 +74,8 @@ class _$PagePessoaDTO extends PagePessoaDTO {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, totalPages.hashCode);
     _$hash = $jc(_$hash, totalElements.hashCode);
+    _$hash = $jc(_$hash, totalPages.hashCode);
     _$hash = $jc(_$hash, size.hashCode);
     _$hash = $jc(_$hash, content.hashCode);
     _$hash = $jc(_$hash, number.hashCode);
@@ -92,8 +92,8 @@ class _$PagePessoaDTO extends PagePessoaDTO {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PagePessoaDTO')
-          ..add('totalPages', totalPages)
           ..add('totalElements', totalElements)
+          ..add('totalPages', totalPages)
           ..add('size', size)
           ..add('content', content)
           ..add('number', number)
@@ -111,14 +111,14 @@ class PagePessoaDTOBuilder
     implements Builder<PagePessoaDTO, PagePessoaDTOBuilder> {
   _$PagePessoaDTO? _$v;
 
-  int? _totalPages;
-  int? get totalPages => _$this._totalPages;
-  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
-
   int? _totalElements;
   int? get totalElements => _$this._totalElements;
   set totalElements(int? totalElements) =>
       _$this._totalElements = totalElements;
+
+  int? _totalPages;
+  int? get totalPages => _$this._totalPages;
+  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
 
   int? _size;
   int? get size => _$this._size;
@@ -166,8 +166,8 @@ class PagePessoaDTOBuilder
   PagePessoaDTOBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _totalPages = $v.totalPages;
       _totalElements = $v.totalElements;
+      _totalPages = $v.totalPages;
       _size = $v.size;
       _content = $v.content?.toBuilder();
       _number = $v.number;
@@ -201,8 +201,8 @@ class PagePessoaDTOBuilder
     try {
       _$result = _$v ??
           new _$PagePessoaDTO._(
-              totalPages: totalPages,
               totalElements: totalElements,
+              totalPages: totalPages,
               size: size,
               content: _content?.build(),
               number: number,
