@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:matricular_app/app/funcionarios/funcionario_page.dart';
 import 'package:matricular_app/app/home/pagina_teste.dart';
+import 'package:matricular_app/app/home/painel_page.dart';
 import 'package:routefly/routefly.dart';
 
 import '../turmas/turma_page.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _indiceAtual = 0; // Variável para controlar o índice das telas
   final List<Widget> _telas = [
-    const NewPageScreen("Início"),
+    const PainelPage(),
     const FuncionarioPage(),
     const TurmaPage()
   ];
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
-              label: "Início"
+              label: "Início",
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.group),

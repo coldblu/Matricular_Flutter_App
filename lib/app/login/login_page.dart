@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
         if(response.statusCode == 200){
           appAPI.config.token.set(response.data!.accessToken!);
           debugPrint("ok validado");
-          Routefly.navigate(routePaths.home);
+          Routefly.navigate(routePaths.home.path);
         }else {
           message() {
             showMessage(context, "Login Falhou: ${response.data}");

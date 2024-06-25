@@ -72,7 +72,7 @@ class _FuncionarioPageState extends State<FuncionarioPage> {
   @override
   Widget build(BuildContext context) {
     UsuarioControllerApi? usuarioApi = context.read<AppAPI>().api.getUsuarioControllerApi();
-    debugPrint("Build Turma page");
+    debugPrint("Build Funcionario page");
 
       return ListenableBuilder(
           listenable: Routefly.listenable,

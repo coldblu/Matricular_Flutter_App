@@ -105,7 +105,7 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
       if(response?.statusCode == 200){
         debugPrint("ok alterado");
         Routefly.navigate(
-            routePaths.home,
+            routePaths.home.path,
             arguments: 1
         );
       }else {

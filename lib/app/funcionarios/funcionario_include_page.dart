@@ -57,17 +57,17 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
     try {
       UsuarioDTOBuilder usuarioDTO = UsuarioDTOBuilder();
       usuarioDTO.pessoaNome = this.pessoaNome;
-      usuarioDTO.pessoaCpf = this.pessoaCPF;
+      usuarioDTO.pessoaCpf = this.pessoaCPF.replaceAll(RegExp(r'[^\d]'), '');
       usuarioDTO.email = this.email;
       usuarioDTO.cargo = UsuarioDTOCargoEnum.valueOf(this.cargo);
-      usuarioDTO.pessoaTelefone = this.pessoaTelefone;
+      usuarioDTO.pessoaTelefone = this.pessoaTelefone.replaceAll(RegExp(r'[^\d]'), '');
       usuarioDTO.senha = this.senha;
 
       var response = await this.usuarioApi.usuarioControllerIncluir(usuarioDTO: usuarioDTO.build());
       if(response.statusCode == 200){
         debugPrint("ok inserido");
         Routefly.navigate(
-            routePaths.home,
+            routePaths.home.path,
             arguments: 1
         );
       }else {
@@ -176,7 +176,6 @@ class _FuncionarioIncludePageState extends State<FuncionarioIncludePage> {
                   decoration: InputDecoration(labelText: 'Telefone'),
                   keyboardType: TextInputType.phone,
                   inputFormatters: [
-                    // Use a package like 'brasil_inputs' for phone mask
                     FilteringTextInputFormatter.digitsOnly,
                     TelefoneInputFormatter(),
                   ],

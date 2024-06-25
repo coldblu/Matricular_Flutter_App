@@ -4,9 +4,10 @@ import 'app/funcionarios/[id]_page.dart' as a2;
 import 'app/funcionarios/funcionario_include_page.dart' as a0;
 import 'app/funcionarios/funcionario_page.dart' as a1;
 import 'app/home/home_page.dart' as a3;
-import 'app/login/login_page.dart' as a4;
-import 'app/prefers/prefers_page.dart' as a5;
-import 'app/turmas/turma_page.dart' as a6;
+import 'app/home/painel_page.dart' as a4;
+import 'app/login/login_page.dart' as a5;
+import 'app/prefers/prefers_page.dart' as a6;
+import 'app/turmas/turma_page.dart' as a7;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -46,12 +47,21 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
+    key: '/home/painel',
+    uri: Uri.parse('/home/painel'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a4.PainelPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/login',
     uri: Uri.parse('/login'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a4.LoginPage(),
+      const a5.LoginPage(),
     ),
   ),
   RouteEntity(
@@ -60,7 +70,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a5.PrefsPage(),
+      const a6.PrefsPage(),
     ),
   ),
   RouteEntity(
@@ -69,7 +79,7 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a6.TurmaPage(),
+      const a7.TurmaPage(),
     ),
   ),
 ];
@@ -82,7 +92,10 @@ const routePaths = (
     funcionario: '/funcionarios/funcionario',
     $id: '/funcionarios/[id]',
   ),
-  home: '/home',
+  home: (
+    path: '/home',
+    painel: '/home/painel',
+  ),
   login: '/login',
   prefers: '/prefers',
   turmas: (
