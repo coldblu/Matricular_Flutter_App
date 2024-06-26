@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:matricular/matricular.dart';
 import 'package:matricular_app/app/api/AppAPI.dart';
 import 'package:matricular_app/app/utils/config_state.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -84,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
       final authenticator = matricularApi.getAuthAPIApi();
       try {
         var authoDTObuilder = AuthDTOBuilder();
-        authoDTObuilder.login = login();
+        authoDTObuilder.login = login().replaceAll(RegExp(r'[^\d]'), '');;
         authoDTObuilder.senha = password();
         final response = await authenticator.login(authDTO: authoDTObuilder.build());
         if(response.statusCode == 200){
@@ -144,6 +146,12 @@ class _LoginPageState extends State<LoginPage> {
               Flexible(
                   flex: 3,
                   child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      // Use a package like 'brasil_inputs' for CPF mask
+                      FilteringTextInputFormatter.digitsOnly,
+                      CpfInputFormatter()
+                    ],
                     onChanged: login.set,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), label: Text("CPF")),

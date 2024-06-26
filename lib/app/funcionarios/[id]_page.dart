@@ -97,10 +97,10 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
     try {
       UsuarioAlterarDTOBuilder usuarioDTO = UsuarioAlterarDTOBuilder();
       usuarioDTO.pessoaNome = pessoaNome;
-      usuarioDTO.pessoaCpf = pessoaCPF;
+      usuarioDTO.pessoaCpf = pessoaCPF.replaceAll(RegExp(r'[^\d]'), '');
       usuarioDTO.email = email;
       usuarioDTO.cargo = UsuarioAlterarDTOCargoEnum.valueOf(cargo);
-      usuarioDTO.pessoaTelefone = pessoaTelefone;
+      usuarioDTO.pessoaTelefone = pessoaTelefone.replaceAll(RegExp(r'[^\d]'), '');
       usuarioDTO.idUsuarioRequisicao = Routefly.query['id'];
       var response = await usuarioApi?.usuarioControllerNovoAlterar(usuarioAlterarDTO: usuarioDTO.build(), id: Routefly.query['id'] ?? idValue());
       if(response?.statusCode == 200){
@@ -182,6 +182,7 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
                   FilteringTextInputFormatter.digitsOnly,
                   CpfInputFormatter()
                 ],
+                readOnly: true,
                 // Label for the email field
                 validator: (value) {
                   // Validation function for the email field
