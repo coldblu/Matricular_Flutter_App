@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:matricular_app/app/funcionarios/funcionario_page.dart';
-import 'package:matricular_app/app/home/pagina_teste.dart';
 import 'package:matricular_app/app/home/painel_page.dart';
 import 'package:routefly/routefly.dart';
 

@@ -260,7 +260,7 @@ class MatriculaControllerApi {
   ///
   /// Returns a [Future] containing a [Response] with a [int] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<int>> matriculaControllerCount({
+  Future<Response<int>> matriculaControllerCount(Set<MatriculaDTOStatusEnum> set, {
     required String statusMatricula,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
