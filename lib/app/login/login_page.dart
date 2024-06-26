@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
       final authenticator = matricularApi.getAuthAPIApi();
       try {
         var authoDTObuilder = AuthDTOBuilder();
-        authoDTObuilder.login = login().replaceAll(RegExp(r'[^\d]'), '');;
+        authoDTObuilder.login = login().replaceAll(RegExp(r'[^\d]'), '');
         authoDTObuilder.senha = password();
         final response = await authenticator.login(authDTO: authoDTObuilder.build());
         if(response.statusCode == 200){
