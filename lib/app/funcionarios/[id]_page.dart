@@ -48,7 +48,7 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
   String? _selectedCargo;
   final List<String> _cargos = ['ADMIN', 'SECRETARIA(O)', 'COORDENADORA(O)'];
   final idValue = signal<int?>(null);
-  
+  final Completer<Response<UsuarioDTO>> _dataLoadedCompleter = Completer<Response<UsuarioDTO>>();
   AppAPI? appAPI;
 
   @override
@@ -81,11 +81,12 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
             cargo = cargoDoBack.name;
             pessoaTelefone = usuarioDto.pessoaTelefone;
           });
+          _dataLoadedCompleter.complete(usuarioResponse);
         }
         return Future.value(Response<UsuarioDTO>(data: usuarioResponse?.data,
             requestOptions: usuarioResponse!.requestOptions));
       } on DioException catch (e) {
-        debugPrint("Erro home:${e.response}");
+        _dataLoadedCompleter.completeError(e);
         return Future.value([] as FutureOr<Response<UsuarioDTO>>?);
       }
     //}
@@ -141,7 +142,7 @@ class _FuncionarioEditPageState extends State<FuncionarioEditPage> {
           title: Text('Alterar Funcionário'),
         ),
         body: FutureBuilder<Response<UsuarioDTO>>(
-          future: pessoaNome == null ? _loadUserData() : null,
+          future: _dataLoadedCompleter.future,
           builder: (context, AsyncSnapshot<Response<UsuarioDTO>> snapshot) {
               return _buildForm(snapshot);
             },
